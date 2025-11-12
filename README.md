@@ -40,7 +40,7 @@ At **DigiYash Tech**, we aim to make technology **accessible, affordable, and im
 Follow & Connect:  
 - 🌐 Website: [https://digiyash.tech](https://digiyash.tech)  
 - 💌 Email: [contact@digiyash.tech](mailto:contact@digiyash.tech)  
-- 💻 GitHub: [github.com/YashwantSahu](https://github.com/iamyash-79)  
+- 💻 GitHub: [github.com/iamyash-79](https://github.com/iamyash-79)  
 - 🔗 LinkedIn: [linkedin.com/in/yashwant-sahu](https://linkedin.com/in/yashwant-sahu)
 
 ---
