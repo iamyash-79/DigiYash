@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yash Tech Interface</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #0a0a1f, #000);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 10;
+      position: relative;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid cyan;
+      box-shadow: 0 0 25px cyan;
+      margin-bottom: 20px;
+      animation: glowPulse 3s infinite alternate;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #bbb;
+      margin-bottom: 25px;
+    }
+
+    .btns, .pay-section {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    a.button {
+      text-decoration: none;
+      color: #fff;
+      padding: 12px 25px;
+      border: 2px solid #00ffff;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    a.button:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
+      transform: scale(1.05);
+    }
+
+    .pay-section {
+      margin-top: 40px;
+      flex-direction: column;
+    }
+
+    .pay-title {
+      font-size: 1.2em;
+      color: #00ffff;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px cyan;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes glowPulse {
+      from { box-shadow: 0 0 15px cyan; }
+      to { box-shadow: 0 0 35px cyan; }
+    }
+
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, cyan, transparent);
+      animation: scan 4s linear infinite;
+      z-index: 5;
+      opacity: 0.4;
+    }
+
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <div class="scanline"></div>
+
+  <div class="container">
+    <img src="static/photo.jpg" alt="Yashwant Kumar Sahu" class="photo">
+    <h1>Yash Tech Lab</h1>
+    <p>Digital Creator • Developer • Innovator</p>
+
+    <!-- Contact Buttons -->
+    <div class="btns">
+      <a href="tel:+917987190554" class="button">Call</a>
+      <a href="https://wa.me/917987190554" target="_blank" class="button">WhatsApp</a>
+      <a href="https://instagram.com/iamyash_79" target="_blank" class="button">Instagram</a>
+    </div>
+
+    <!-- Pay Now Section -->
+    <div class="pay-section">
+      <p class="pay-title">Payments</p>
+      <a href="https://razorpay.me/@yashcybercafe3112" class="button" target="_blank">Pay Now</a>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 100;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - 0.5) * 0.8,
+        dy: (Math.random() - 0.5) * 0.8
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "cyan";
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>

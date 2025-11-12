@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DigiYash - Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles & resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Consistent with homepage */
+            line-height: 1.7; /* Consistent with homepage */
+            color: #333; /* Darker grey for better contrast, consistent with homepage */
+            background: #ffffff; /* Pure white background for light theme, consistent with homepage */
+            overflow-x: hidden; /* Crucial: Prevent horizontal scroll from full-width elements */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer sticks to bottom on short pages */
+        }
+
+        /* Hero Title for internal pages */
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900; /* Consistent with hero text */
+            color: #333; /* Darker text for light theme header */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Subtle shadow */
+            text-align: center;
+        }
+
+        /* Standard Content Sections */
+        section {
+            padding: 4.5rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 2fr; /* Info on left, form on right */
+            }
+        }
+
+        /* Headings */
+        h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #1a2a40; /* Dark blue heading color, consistent with homepage */
+        }
+
+        h2.text-center {
+            font-size: 3.5rem; /* Consistent with homepage */
+            margin-bottom: 2.5rem;
+            color: #00796B; /* Darker teal for main section headings, consistent with homepage */
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444; /* Darker grey for body text */
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25); /* Slightly stronger shadow */
+            height: auto;
+            display: block;
+        }
+
+        /* Specific styles for the Contact Us content */
+        .contact-content {
+            padding: 4.5rem 2rem; /* Consistent padding */
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: #00796B; /* Changed to darker teal for highlight for headings */
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: #00796B; /* Changed to darker teal for links */
+            text-decoration: none;
+            transition: color 0.3s ease; /* Smooth transition for links */
+        }
+        .contact-info a:hover {
+            color: #004D40; /* Changed to even darker teal highlight on hover */
+            text-decoration: none; /* Added underline for better UX on hover */
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin-right: 1rem;
+            font-size: 1.8rem; /* Slightly larger for better visibility */
+            color: #1A2A40; /* Dark blue for social icons */
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            color: #00BCD4; /* Changed to primary teal on hover */
+        }
+
+        .contact-form-container {
+            background: #f0f8ff; /* Very light blue, consistent with light theme secondary backgrounds */
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-form-container h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #00796B; /* Darker teal heading for consistency */
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-form label {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            display: block;
+            color: #1a2a40; /* Dark blue for labels */
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ccc; /* Lighter border for input fields */
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            background-color: #fff; /* Ensure white background for inputs */
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #00BCD4; /* Primary teal border on focus */
+            outline: none;
+            box-shadow: 0 0 5px rgba(0,188,212,0.5);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            background: #00796B; /* Darker teal button for submit */
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            align-self: flex-start;
+            box-shadow: 0 4px 10px rgba(0,77,64,0.3); /* Shadow for dark teal button */
+        }
+
+        .contact-form button:hover {
+            background: #004D40; /* Even darker teal on hover */
+            color: white; /* Maintain white text on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,77,64,0.5);
+        }
+
+        /* --- Scroll Animation (using Intersection Observer) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll.left {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.left.active {
+            transform: translateX(0);
+        }
+
+        .animate-on-scroll.right {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.right.active {
+            transform: translateX(0);
+        }
+
+        .animate-on-scroll.scale-in {
+            transform: scale(0.9);
+        }
+        .animate-on-scroll.scale-in.active {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+<section class="contact-content">
+    <div class="grid grid-2">
+        <div class="contact-info animate-on-scroll left">
+            <h3>Reach Out to Us</h3>
+            <p>Whether you have a question about our services, need a demo, or just want to discuss your digital presence, our team is ready to help.</p>
+            <p>We're passionate about helping businesses thrive online, and we'd love to hear about your project.</p>
+
+            <p style="margin-top:2rem;"><strong>Our Office:</strong><br>
+            1234 Digital Marketing Avenue<br>
+            Tech City, BLR 560001, India</p>
+
+            <p><strong>Email Us:</strong><br>
+            <a href="mailto:contact@digiyash.tech">contact@digiyash.tech</a></p>
+
+            <p><strong>Call Us:</strong><br>
+            <a href="tel:+917987190554">+91 7987190554</a></p>
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/iamyash798" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/iamyash_79?igsh=MW5pd2ExemcwdjlycA==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <div class="contact-form-container animate-on-scroll right">
+            <h3>Send Us a Message</h3>
+            <form class="contact-form" action="/contact" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject (Optional)">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Tell us about your project or query..." required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html' %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // Optional: remove 'active' class when element scrolls out of view
+                    // This creates the reverse scroll effect, making elements animate back out
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+    });
+</script>
+
+</body>
+</html>

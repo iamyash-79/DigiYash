@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DigiYash - Modern Digital Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles & resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #ffffff; /* Pure white background for light theme */
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Standard Content Sections */
+        section:not(.full-width-section-wrapper) {
+            padding: 4.5rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Headings */
+        h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #1a2a40;
+        }
+
+        h2.text-center {
+            font-size: 3.5rem;
+            margin-bottom: 2.5rem;
+            color: #00796B; /* Darker teal for main section headings */
+        }
+
+        /* Full-Width Section Containers */
+        .full-width-section-wrapper {
+            width: 100%;
+            box-sizing: border-box;
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+        }
+
+        .full-width-section-wrapper .content-container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .highlight.full .content-container.grid-2 {
+            grid-template-columns: 1fr 1fr;
+            max-width: 1400px;
+        }
+        .highlight.full .content-container.grid-2 > div:first-child {
+            order: 2;
+        }
+        .highlight.full .content-container.grid-2 > div:last-child {
+            order: 1;
+        }
+
+        .highlight {
+            background: #e0f2f7; /* Lighter teal for highlight sections */
+        }
+
+        .highlight .content-container.grid-2 {
+            display: grid;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Call To Action Section - Now light */
+        .call-to-action {
+            background: #f0f8ff; /* Very light blue background */
+            color: #333; /* Dark text for contrast */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+
+        .call-to-action h2 {
+            font-size: 3.8rem;
+            color: #00796B; /* Darker teal for CTA heading */
+            margin-bottom: 1.5rem;
+            text-shadow: none; /* Remove text shadow for light background */
+        }
+
+        .call-to-action p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+            color: #555; /* Darker grey text */
+            line-height: 1.8;
+        }
+
+        .call-to-action .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .call-to-action .cta-buttons .btn-primary,
+        .call-to-action .cta-buttons .btn-secondary {
+            padding: 1.1rem 2.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-align: center;
+            min-width: 220px;
+            box-sizing: border-box;
+        }
+
+        .call-to-action .cta-buttons .btn-primary {
+            background: #00BCD4;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,188,212,0.4);
+            border: none;
+        }
+
+        .call-to-action .cta-buttons .btn-primary:hover {
+            background: #00ACC1;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0,188,212,0.6);
+        }
+
+        .call-to-action .cta-buttons .btn-secondary {
+            background: transparent;
+            color: #00796B; /* Dark teal text for secondary button */
+            border: 2px solid #00796B; /* Dark teal border */
+        }
+
+        .call-to-action .cta-buttons .btn-secondary:hover {
+            background: #00796B; /* Dark teal background on hover */
+            border-color: #00796B;
+            color: #fff; /* White text on hover */
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* Subscribe Section */
+        .subscribe {
+            background: #e0f2f7; /* Lighter teal for subscribe section */
+        }
+
+        .subscribe h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #00796B; /* Darker teal for subscribe heading */
+        }
+
+        .subscribe p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subscribe form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .subscribe input {
+            padding: 0.9rem 1.4rem;
+            border: 1px solid #999;
+            border-radius: 5px;
+            font-size: 1rem;
+            flex-grow: 1;
+            min-width: 250px;
+            box-sizing: border-box;
+            background: #f9f9f9; /* Slightly off-white for input */
+        }
+
+        .subscribe button {
+            padding: 0.9rem 2rem;
+            background: #00796B; /* Darker teal button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .subscribe button:hover {
+            background: #004D40; /* Even darker teal on hover */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        /* General styles */
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25); /* Slightly stronger shadow */
+            height: auto;
+            display: block;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444; /* Darker grey for body text */
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* --- Scroll Animation (using Intersection Observer) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll.left {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.left.active {
+            transform: translateX(0);
+        }
+
+        .animate-on-scroll.right {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.right.active {
+            transform: translateX(0);
+        }
+
+        .animate-on-scroll.scale-in {
+            transform: scale(0.9);
+        }
+        .animate-on-scroll.scale-in.active {
+            transform: scale(1);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media(max-width: 768px) {
+            .hero-text {
+                font-size: 3.2rem;
+                margin-left: 1rem;
+                margin-bottom: 1rem;
+                text-align: center;
+                align-self: center;
+                color: #333; /* Ensure readability on mobile hero */
+            }
+            .hero-subtext {
+                font-size: 1.1rem;
+                max-width: 90%;
+                text-align: center;
+                margin-right: 1rem;
+                margin-bottom: 2.5rem;
+                align-self: center;
+                color: #555; /* Ensure readability on mobile hero */
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+            nav ul li {
+                font-size: 0.8rem;
+            }
+            .quote-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            section:not(.full-width-section-wrapper) {
+                padding: 3rem 1.5rem;
+            }
+
+            h2.text-center {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .full-width-section-wrapper .content-container {
+                padding: 0 1.5rem;
+            }
+
+            .highlight .content-container.grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .highlight.full .content-container.grid-2 > div:first-child {
+                order: unset;
+            }
+            .highlight.full .content-container.grid-2 > div:last-child {
+                order: unset;
+            }
+
+            .call-to-action h2 {
+                font-size: 2.8rem;
+            }
+            .call-to-action p {
+                font-size: 1.1rem;
+            }
+            .call-to-action .cta-buttons {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .call-to-action .cta-buttons .btn-primary,
+            .call-to-action .cta-buttons .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .subscribe form {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .subscribe input,
+            .subscribe button {
+                width: 100%;
+                max-width: 300px;
+            }
+            .subscribe input {
+                padding: 0.7rem 1rem;
+            }
+            .subscribe button {
+                padding: 0.7rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+ {% include 'header.html' %}
+
+<section>
+    <h2 class="text-center animate-on-scroll">OUR APPROACH</h2>
+    <div class="grid grid-3">
+        <div class="animate-on-scroll scale-in">
+            <h3>Strategic Design</h3>
+            <p>We blend aesthetics with functionality, creating designs that are not just beautiful but also highly effective and user-centric.</p>
+        </div>
+        <div class="animate-on-scroll scale-in" style="transition-delay: 0.1s;">
+            <h3>Robust Development</h3>
+            <p>Our development team crafts custom solutions that are scalable, secure, and perfectly tailored to your business needs, ensuring seamless performance.</p>
+        </div>
+        <div class="animate-on-scroll scale-in" style="transition-delay: 0.2s;">
+            <h3>Impactful Marketing</h3>
+            <p>Leverage data-driven insights and cutting-edge techniques to connect with your audience, amplify your reach, and drive tangible results.</p>
+        </div>
+    </div>
+</section>
+
+<section class="highlight full-width-section-wrapper full">
+    <div class="content-container grid grid-2">
+        <div class="animate-on-scroll right">
+            <h2 style="font-size:2.5rem; color: #1a2a40;">About Our Expertise</h2>
+            <p>With over **12 years of industry experience** and a dedicated team of **40 web experts**, DigiYash is your trusted partner for digital transformation. We've helped countless businesses establish a strong online presence and achieve significant growth.</p>
+            <h3>Our Mission</h3>
+            <p>To empower businesses with exceptional, **affordable, and effective digital solutions** that drive measurable results and foster long-term success.</p>
+            <h3>Our Vision</h3>
+            <p>To be recognized as a leading innovator in digital strategy and web solutions, consistently delivering superior value and pushing the boundaries of what's possible online.</p>
+        </div>
+        <div class="animate-on-scroll left">
+           <img src="static/collaboration.png" alt="Collaboration Image" style="width:100%; height:auto;">
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="text-center animate-on-scroll">Why Partner with DigiYash?</h2>
+    <p class="text-center animate-on-scroll" style="max-width: 800px; margin: 0 auto 2rem auto; color: #555;">We're more than just an agency; we're an extension of your team. Our commitment to **impartial advice, transparent processes, and genuine care** for your business sets us apart. We don't just build websites; we build partnerships that thrive.</p>
+</section>
+
+<section class="highlight full-width-section-wrapper">
+    <div class="content-container grid grid-2">
+        <div class="animate-on-scroll left">
+            <h2 style="font-size:2.5rem; color: #1a2a40;">Ready for Your Next Big Project?</h2>
+            <p>Whether you're starting from scratch or looking to revitalize your existing digital assets, we're here to help. Let's collaborate to bring your groundbreaking ideas to life and create something truly remarkable.</p>
+            <h3>Let's Connect</h3>
+            <p>Our team is eager to discuss your project. We'll provide a comprehensive consultation to understand your needs and outline a roadmap for success.</p>
+            <a href="contact" class="quote-btn" style="margin-top:1rem;">Start Your Project Now!</a>
+        </div>
+        <div class="animate-on-scroll right">
+            <img src="static/brainstroming.png" alt="brainstroming" style="width:100%; height:auto;">
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="text-center animate-on-scroll">A Team Driven by Innovation & Passion</h2>
+    <p class="text-center animate-on-scroll" style="max-width: 800px; margin: 0 auto 2rem auto; color: #555;">Our success stems from a highly motivated and creative team that's passionate about digital excellence. We constantly strive for innovative solutions to ensure your online success and become your reliable digital partner.</p>
+    <div class="grid grid-3">
+        <img class="animate-on-scroll scale-in" style="transition-delay: 0.2s;" src="static/team1.png" alt="Team Member 1">
+        <img class="animate-on-scroll scale-in" style="transition-delay: 0.2s;" src="static/team2.png" alt="Team Member 2">
+        <img class="animate-on-scroll scale-in" style="transition-delay: 0.2s;" src="static/team3.png" alt="Team Member 3">
+    </div>
+</section>
+
+<section class="call-to-action full-width-section-wrapper">
+    <div class="content-container animate-on-scroll">
+        <h2 class="text-center">Elevate Your Brand. Empower Your Future.</h2>
+        <p class="text-center">Join the growing list of businesses thriving with DigiYash. Let's connect and craft a digital strategy that sets you apart and propels your business forward.</p>
+        <div class="cta-buttons">
+            <a href="contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Get Your Free Quote</a>
+            <a href="services" class="btn-secondary"><i class="fas fa-info-circle"></i> Discover Our Services</a>
+        </div>
+    </div>
+</section>
+
+<section class="subscribe full-width-section-wrapper">
+    <div class="content-container animate-on-scroll">
+        <h2 class="text-center">Stay Ahead with Our Digital Insights!</h2>
+        <p class="text-center">Subscribe to our newsletter for the latest digital trends, expert tips, and exclusive offers delivered directly to your inbox.</p>
+        <form action="contact" method="get">
+            <input type="email" placeholder="Enter your email address" required />
+            <button type="submit">Subscribe Now</button>
+        </form>
+    </div>
+</section>
+
+ {% include 'footer.html' %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburger = document.getElementById('hamburger-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // Optional: remove 'active' class when element scrolls out of view
+                    // This creates the reverse scroll effect
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+    });
+</script>
+
+</body>
+</html>

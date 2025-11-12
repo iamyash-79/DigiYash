@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our Services - DigiYash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles & resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Consistent with homepage */
+            line-height: 1.7; /* Consistent with homepage */
+            color: #333; /* Darker grey for better contrast, consistent with homepage */
+            background: #ffffff; /* Pure white background for light theme, consistent with homepage */
+            overflow-x: hidden; /* Crucial: Prevent horizontal scroll from full-width elements */
+
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer sticks to bottom on short pages */
+        }
+
+        /* Hero Title for internal pages */
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900; /* Consistent with hero text */
+            color: #333; /* Darker text for light theme header */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Subtle shadow */
+            text-align: center;
+        }
+
+        /* Standard Content Sections (these are always centered) */
+        section:not(.full-width-section-wrapper) {
+            padding: 4.5rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+            flex-grow: 1;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: 1fr;
+        }
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Headings */
+        h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #1a2a40; /* Dark blue heading color, consistent with homepage */
+        }
+
+        h2.text-center {
+            font-size: 3.5rem; /* Consistent with homepage */
+            margin-bottom: 2.5rem;
+            color: #00796B; /* Darker teal for main section headings, consistent with homepage */
+        }
+
+        /* --- FULL-WIDTH SECTION CONTAINER STYLES --- */
+        .full-width-section-wrapper {
+            width: 100%;
+            box-sizing: border-box;
+            padding-top: 4.5rem;
+            padding-bottom: 4.5rem;
+        }
+
+        .full-width-section-wrapper .content-container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 0 2rem;
+            box-sizing: border-box;
+
+            margin: 0 auto; /* This is the key for centering a block-level element with a max-width */
+        }
+
+        .highlight.full .content-container.grid-2 {
+            grid-template-columns: 1fr 1fr;
+            max-width: 1400px;
+        }
+        .highlight.full .content-container.grid-2 > div:first-child {
+            order: 2;
+        }
+        .highlight.full .content-container.grid-2 > div:last-child {
+            order: 1;
+        }
+
+        .highlight {
+            background: #e0f2f7; /* Lighter teal background, consistent with homepage highlight */
+        }
+
+        .highlight .content-container.grid-2 {
+            display: grid;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Call To Action Section - EXACTLY from homepage light theme */
+        .call-to-action {
+            background: #f0f8ff; /* Very light blue background */
+            color: #333; /* Dark text for contrast */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+
+        .call-to-action h2 {
+            font-size: 3.8rem;
+            color: #00796B; /* Darker teal for CTA heading */
+            margin-bottom: 1.5rem;
+            text-shadow: none; /* Remove text shadow for light background */
+        }
+
+        .call-to-action p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+            color: #555; /* Darker grey text */
+            line-height: 1.8;
+        }
+
+        .call-to-action .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .call-to-action .cta-buttons .btn-primary,
+        .call-to-action .cta-buttons .btn-secondary {
+            padding: 1.1rem 2.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-align: center;
+            min-width: 220px;
+            box-sizing: border-box;
+        }
+
+        .call-to-action .cta-buttons .btn-primary {
+            background: #00BCD4;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0,188,212,0.4);
+            border: none;
+        }
+
+        .call-to-action .cta-buttons .btn-primary:hover {
+            background: #00ACC1;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0,188,212,0.6);
+        }
+
+        .call-to-action .cta-buttons .btn-secondary {
+            background: transparent;
+            color: #00796B; /* Dark teal text for secondary button */
+            border: 2px solid #00796B; /* Dark teal border */
+        }
+
+        .call-to-action .cta-buttons .btn-secondary:hover {
+            background: #00796B; /* Dark teal background on hover */
+            border-color: #00796B;
+            color: #fff; /* White text on hover */
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* General styles */
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25); /* Slightly stronger shadow */
+            height: auto;
+            display: block;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444; /* Darker grey for body text */
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* Specific style for service cards */
+        .service-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%; /* Ensure cards in a row have equal height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #00BCD4;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #00796B;
+            margin-bottom: 0.8rem;
+            font-size: 1.8rem;
+        }
+
+        .service-card p {
+            color: #555;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card .btn-outline {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #00BCD4;
+            color: #00BCD4;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: auto; /* Push button to the bottom */
+        }
+
+        .service-card .btn-outline:hover {
+            background: #00BCD4;
+            color: #fff;
+        }
+
+
+        /* --- Scroll Animation (using Intersection Observer) --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-on-scroll.left {
+            transform: translateX(-50px);
+        }
+        .animate-on-scroll.left.active {
+            transform: translateX(0);
+        }
+
+        .animate-on-scroll.right {
+            transform: translateX(50px);
+        }
+        .animate-on-scroll.right.active {
+            transform: translateX(0);
+        }
+
+        .animate-on-scroll.scale-in {
+            transform: scale(0.9);
+        }
+        .animate-on-scroll.scale-in.active {
+            transform: scale(1);
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media(max-width: 768px) {
+            header {
+                height: 40vh; /* Shorter on mobile too */
+            }
+            .page-title {
+                font-size: 3rem; /* Smaller title for mobile */
+                color: #333; /* Ensure consistent dark text */
+            }
+
+            /* Mobile Navigation - Now includes hamburger menu */
+            .hamburger {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            nav ul {
+                display: none; /* Hide navigation links by default on mobile */
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: -100%; /* Start off-screen */
+                width: 70%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.95);
+                padding-top: 6rem;
+                align-items: center;
+                transition: right 0.3s ease-in-out;
+                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                right: 0; /* Slide in when active */
+                display: flex; /* Show when active */
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+                font-size: 1.2rem;
+            }
+
+            nav ul li a {
+                color: #00796B; /* Dark teal for mobile nav links */
+            }
+
+            nav ul li.active a {
+                color: #004D40; /* Darker teal for active mobile nav link */
+            }
+
+            .quote-btn {
+                display: none; /* Hide button in mobile nav */
+            }
+
+
+            section:not(.full-width-section-wrapper) {
+                padding: 3rem 1.5rem;
+            }
+
+            h2.text-center {
+                font-size: 2.5rem; /* Consistent with homepage mobile */
+                margin-bottom: 1.5rem;
+            }
+
+            .full-width-section-wrapper .content-container {
+                padding: 0 1.5rem;
+            }
+
+            .highlight .content-container.grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .highlight.full .content-container.grid-2 > div:first-child {
+                order: unset;
+            }
+            .highlight.full .content-container.grid-2 > div:last-child {
+                order: unset;
+            }
+
+            .call-to-action h2 {
+                font-size: 2.8rem; /* Consistent with homepage mobile */
+            }
+            .call-to-action p {
+                font-size: 1.1rem; /* Consistent with homepage mobile */
+            }
+            .call-to-action .cta-buttons {
+                flex-direction: column;
+                gap: 1.2rem; /* Consistent with homepage mobile */
+            }
+            .call-to-action .cta-buttons .btn-primary,
+            .call-to-action .cta-buttons .btn-secondary {
+                width: 100%;
+                max-width: 300px; /* Consistent with homepage mobile */
+                margin: 0 auto;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            /* Service card mobile adjustments */
+            .grid-3 .service-card {
+                padding: 1.5rem;
+            }
+            .service-card h3 {
+                font-size: 1.6rem;
+            }
+            .service-card p {
+                font-size: 0.95rem;
+            }
+            .service-card .btn-outline {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'header.html' %}
+
+    <section>
+        <h2 class="text-center animate-on-scroll">What We Offer</h2>
+        <div class="grid grid-3">
+            <div class="service-card animate-on-scroll scale-in">
+                <i class="fas fa-desktop"></i>
+                <h3>Web Design & Development</h3>
+                <p>Crafting stunning, responsive, and user-friendly websites tailored to your brand's unique identity and business goals.</p>
+                <a href="contact" class="btn-outline">Learn More</a>
+            </div>
+            <div class="service-card animate-on-scroll scale-in" style="transition-delay: 0.1s;">
+                <i class="fas fa-chart-line"></i>
+                <h3>Search Engine Optimization (SEO)</h3>
+                <p>Boosting your online visibility and organic search rankings to drive more targeted traffic to your website.</p>
+                <a href="contact" class="btn-outline">Learn More</a>
+            </div>
+            <div class="service-card animate-on-scroll scale-in" style="transition-delay: 0.2s;">
+                <i class="fas fa-share-alt"></i>
+                <h3>Social Media Marketing</h3>
+                <p>Engaging your audience and building brand loyalty across popular social media platforms with strategic campaigns.</p>
+                <a href="contact" class="btn-outline">Learn More</a>
+            </div>
+            <div class="service-card animate-on-scroll scale-in" style="transition-delay: 0.3s;">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Pay-Per-Click (PPC) Advertising</h3>
+                <p>Creating and managing highly effective PPC campaigns to generate immediate leads and maximize your ROI.</p>
+                <a href="contact" class="btn-outline">Learn More</a>
+            </div>
+            <div class="service-card animate-on-scroll scale-in" style="transition-delay: 0.4s;">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Marketing</h3>
+                <p>Developing compelling email campaigns to nurture leads, drive sales, and maintain strong customer relationships.</p>
+                <a href="contact" class="btn-outline">Learn More</a>
+            </div>
+            <div class="service-card animate-on-scroll scale-in" style="transition-delay: 0.5s;">
+                <i class="fas fa-file-alt"></i>
+                <h3>Content Creation</h3>
+                <p>Producing high-quality, engaging content that resonates with your target audience and strengthens your brand authority.</p>
+                <a href="contact" class="btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlight full-width-section-wrapper">
+        <div class="content-container grid grid-2">
+            <div class="animate-on-scroll left">
+                <img src="static/why_us.png" alt="Why Choose Us">
+            </div>
+            <div class="animate-on-scroll right">
+                <h2 style="font-size:2.5rem; color: #1a2a40;">Why Choose DigiYash for Your Digital Needs?</h2>
+                <p>Choosing the right digital partner is crucial for your business's success. At DigiYash, we combine **over a decade of experience** with a forward-thinking approach to deliver results that matter. Our team of **40 dedicated web experts** is committed to understanding your unique challenges and crafting customized solutions.</p>
+                <p>We pride ourselves on our **transparent processes, measurable results, and exceptional client support**. From the initial strategy session to ongoing optimization, we're with you every step of the way, ensuring your digital presence is not just strong, but continually growing.</p>
+                <p>Let us help you navigate the complexities of the digital world and turn your online aspirations into reality.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="call-to-action full-width-section-wrapper">
+        <div class="content-container animate-on-scroll">
+            <h2 class="text-center">Ready to Elevate Your Brand Online?</h2>
+            <p class="text-center">Don't let your competitors get ahead. Partner with DigiYash and experience the difference of a truly dedicated digital agency.</p>
+            <div class="cta-buttons">
+                <a href="contact" class="btn-primary"><i class="fas fa-comments"></i> Start a Project</a>
+                <a href="about" class="btn-secondary"><i class="fas fa-users"></i> Meet Our Team</a>
+            </div>
+        </div>
+    </section>
+
+{% include 'footer.html' %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } else {
+                        // Optional: remove 'active' class when element scrolls out of view
+                        // This creates the reverse scroll effect
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+
+</body>
+</html>
