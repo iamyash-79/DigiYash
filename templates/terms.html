@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; line-height: 1.7; }
+
+        /* ---------- TERMS HERO ---------- */
+        .terms-hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at bottom, #1e1b4b 0%, var(--bg) 80%);
+        }
+        .terms-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
+        .terms-hero p { color: var(--accent); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* ---------- CONTENT LAYOUT ---------- */
+        .terms-container {
+            max-width: 1000px;
+            margin: -50px auto 100px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .terms-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 4rem;
+        }
+
+        .terms-section { margin-bottom: 3.5rem; }
+        .terms-section h2 { 
+            font-size: 1.6rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+        .terms-section h2 span { color: var(--accent); opacity: 0.5; font-family: monospace; }
+        
+        .terms-section p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; }
+        
+        .highlight-box {
+            padding: 1.5rem;
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            color: var(--text);
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .terms-card { padding: 2.5rem 1.5rem; }
+            .terms-hero { height: 40vh; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="terms-hero">
+        <p class="reveal">Service Guidelines</p>
+        <h1 class="reveal">Terms of Use</h1>
+    </section>
+
+    <main class="terms-container">
+        <div class="terms-card reveal">
+            
+            <div class="terms-section">
+                <h2><span>01</span> Acceptance of Terms</h2>
+                <p>By accessing the SahuOne Digital website and engaging our services, you agree to be bound by these Terms of Use. If you do not agree to these terms, please discontinue use of our site and services immediately.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2><span>02</span> Professional Services</h2>
+                <p>SahuOne Technologies provides specialized development, growth systems, and automation services. All project timelines and deliverables are subject to the specific Master Service Agreement (MSA) signed at project kick-off.</p>
+                <div class="highlight-box">
+                    <strong>Note:</strong> We prioritize sub-second performance and engineered logic. Use of our code for malicious purposes or reverse engineering our proprietary growth frameworks is strictly prohibited.
+                </div>
+            </div>
+
+            <div class="terms-section">
+                <h2><span>03</span> Intellectual Property</h2>
+                <p>Unless otherwise stated in a project contract, the visual design, custom animations, and layout of this website are the intellectual property of SahuOne Technologies. Unauthorized reproduction of our brand assets is a violation of international copyright laws.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2><span>04</span> User Conduct</h2>
+                <p>When interacting with our lead capture forms or client portals, you agree to provide accurate information. Any attempt to disrupt our server-side rendering or API endpoints via DDoS or automated scraping will result in immediate termination of access.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2><span>05</span> Limitation of Liability</h2>
+                <p>While we build for "The Digital Elite" using high-concurrency architecture, SahuOne Technologies is not liable for any indirect or consequential losses arising from third-party hosting failures or external API downtime outside of our direct control.</p>
+            </div>
+
+            <div class="terms-section">
+                <h2><span>06</span> Governing Law</h2>
+                <p>These terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+            </div>
+
+            <div class="last-updated">
+                © 2026 SahuOne Technologies. All rights reserved.
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

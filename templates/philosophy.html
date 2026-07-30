@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+        /* ---------- PHILOSOPHY HERO ---------- */
+        .philo-hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at top, #1e1b4b 0%, var(--bg) 70%);
+        }
+        .philo-hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            letter-spacing: -4px;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+        .philo-hero p {
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ---------- THE "WHY" SECTION ---------- */
+        .manifesto {
+            max-width: 1200px;
+            margin: -100px auto 100px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+        .manifesto-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .manifesto-text p { color: var(--muted); line-height: 1.8; font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+        /* ---------- CORE PILLARS (The 3 Industries) ---------- */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 100px auto;
+            padding: 0 2rem;
+        }
+        .pillar-card {
+            padding: 3rem;
+            border-radius: 30px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            transition: 0.4s;
+        }
+        .pillar-card:hover { border-color: var(--accent); background: rgba(99, 102, 241, 0.05); }
+        .pillar-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .pillar-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .pillar-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* ---------- THE CREATOR SECTION ---------- */
+        .creator-section {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: center;
+            gap: 6rem;
+            padding: 140px 2rem;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .creator-img {
+            aspect-ratio: 1/1;
+            background: var(--surface);
+            border-radius: 40px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .section-header {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           justify-content: center;
+           text-align: center;
+        }
+
+        .creator-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
+        .creator-img:hover img { filter: grayscale(0%); }
+        
+        .creator-bio h4 { color: var(--accent); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1rem; }
+        .creator-bio h2 { font-size: 3.5rem; margin-bottom: 2rem; }
+
+        /* ---------- ANIMATIONS ---------- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 992px) {
+            .manifesto, .pillars-grid, .creator-section { grid-template-columns: 1fr; padding: 2rem; text-align: center; }
+            .manifesto { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="philo-hero">
+        <p class="reveal">Behind the Code</p>
+        <h1 class="reveal">Strategy Meets<br>Soul.</h1>
+    </section>
+
+    <section class="manifesto reveal">
+        <div class="manifesto-text">
+            <h2>We don't build websites.<br>We build momentum.</h2>
+            <p>In a world of template-driven designs and slow-loading pages, we chose a different path. Our philosophy is rooted in <b>Performance Engineering</b>.</p>
+            <p>We believe that every pixel should serve a purpose. Whether it's reducing the friction in a travel booking or optimizing the conversion of a solar lead, we build with intent.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); padding-left: 4rem;">
+            <div style="margin-bottom: 2rem;">
+                <h4 style="color: #fff;">01. Fast by Default</h4>
+                <p style="color: var(--muted);">Speed is a feature, not an afterthought.</p>
+            </div>
+            <div style="margin-bottom: 2rem;">
+                <h4 style="color: #fff;">02. Human Centric</h4>
+                <p style="color: var(--muted);">Technology should feel invisible and intuitive.</p>
+            </div>
+            <div>
+                <h4 style="color: #fff;">03. Future Proof</h4>
+                <p style="color: var(--muted);">We build for 2026, not 2016.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <p>Our Focus</p>
+            <h2>Industries We Empower</h2>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card reveal">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>E-Commerce</h3>
+                <p>We believe online shopping should be an experience, not a chore. We focus on headless architectures that handle massive traffic with ease.</p>
+            </div>
+            <div class="pillar-card reveal" style="transition-delay: 0.1s;">
+                <i class="fas fa-plane-departure"></i>
+                <h3>Travel & Tourism</h3>
+                <p>Travel is about emotion. We build booking platforms that inspire wanderlust while maintaining complex API reliability.</p>
+            </div>
+            <div class="pillar-card reveal" style="transition-delay: 0.2s;">
+                <i class="fas fa-sun"></i>
+                <h3>Solar Energy</h3>
+                <p>Sustainability needs better tech. We build platforms that simplify clean energy adoption for a greener planet.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="creator-section">
+        <div class="creator-img reveal">
+            <img src="static/yash.png" alt="Founder">
+        </div>
+        <div class="creator-bio reveal">
+            <h4>The Founder</h4>
+            <h2>Engineered to<br>Elevate Brands.</h2>
+            <p style="color: var(--muted); font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                Hi, I'm the lead developer at SahuOne. With over a decade of experience in full-stack engineering, 
+                I noticed a gap between "pretty design" and "functional code." 
+            </p>
+            <p style="color: var(--muted); font-size: 1.2rem; line-height: 1.8; margin-bottom: 2.5rem;">
+                My goal is to bridge that gap. By combining high-end aesthetics with industrial-grade 
+                performance, I help businesses in the Solar, Travel, and Retail sectors not just exist, 
+                but dominate.
+            </p>
+            <a href="/connect" class="cta-btn" style="padding: 1.2rem 3rem; background: var(--accent); color: white; text-decoration: none; border-radius: 12px; font-weight: 700;">Get in Touch</a>
+        </div>
+    </section>
+
+    <section style="padding: 140px 2rem; text-align: center; border-top: 1px solid var(--border);">
+        <div class="reveal">
+            <i class="fas fa-quote-left" style="font-size: 3rem; color: var(--accent); margin-bottom: 2rem; opacity: 0.5;"></i>
+            <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 500; font-style: italic; max-width: 1000px; margin: auto; line-height: 1.4;">
+                "The best way to predict the future is to build it. We focus on the tech today so you can lead the market tomorrow."
+            </h2>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

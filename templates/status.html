@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Status | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #10b981; /* Green for "Operational" */
+            --warning: #f59e0b;
+            --critical: #ef4444;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+        /* ---------- STATUS HERO ---------- */
+        .status-hero {
+            height: 45vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at bottom, #064e3b 0%, var(--bg) 80%);
+        }
+
+        .overall-status {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent);
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        .pulse {
+            width: 12px; height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* ---------- SYSTEM GRID ---------- */
+        .status-container {
+            max-width: 1000px;
+            margin: -40px auto 100px;
+            padding: 0 2rem;
+        }
+
+        .status-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 3rem;
+        }
+
+        .system-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .system-row:last-child { border-bottom: none; }
+
+        .sys-info h4 { font-size: 1.1rem; margin-bottom: 4px; }
+        .sys-info p { color: var(--muted); font-size: 0.85rem; }
+
+        .sys-status { font-weight: 700; font-size: 0.9rem; color: var(--accent); }
+
+        /* ---------- UPTIME GRAPH ---------- */
+        .uptime-viz {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .bar-container {
+            display: flex;
+            gap: 4px;
+            height: 35px;
+            align-items: flex-end;
+            margin: 1.5rem 0;
+        }
+        .bar {
+            flex: 1;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+        .bar:hover { opacity: 1; transform: scaleY(1.1); }
+
+        /* ---------- INCIDENT LOG ---------- */
+        .incident-log { margin-top: 4rem; }
+        .incident-item {
+            border-left: 2px solid var(--border);
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .incident-item::before {
+            content: '';
+            position: absolute;
+            left: -6px; top: 0;
+            width: 10px; height: 10px;
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+        }
+        .incident-date { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .incident-title { font-size: 1.2rem; margin: 0.5rem 0; }
+        .incident-desc { color: var(--muted); font-size: 0.95rem; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="status-hero">
+        <h1 class="reveal">System Health</h1>
+        <div class="overall-status reveal">
+            <div class="pulse"></div>
+            <span style="font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">All Systems Operational</span>
+        </div>
+    </section>
+
+    <main class="status-container">
+        <div class="status-card reveal">
+            <div class="system-row">
+                <div class="sys-info">
+                    <h4>Production API</h4>
+                    <p>Global Edge Network</p>
+                </div>
+                <div class="sys-status">OPERATIONAL</div>
+            </div>
+            <div class="system-row">
+                <div class="sys-info">
+                    <h4>Automation Engine</h4>
+                    <p>Solar Lead Flow Pipelines</p>
+                </div>
+                <div class="sys-status">OPERATIONAL</div>
+            </div>
+            <div class="system-row">
+                <div class="sys-info">
+                    <h4>Cloud Infrastructure</h4>
+                    <p>AWS / Vercel Enterprise</p>
+                </div>
+                <div class="sys-status">OPERATIONAL</div>
+            </div>
+            <div class="system-row">
+                <div class="sys-info">
+                    <h4>Client Portals</h4>
+                    <p>Dashboard & Reporting Suites</p>
+                </div>
+                <div class="sys-status">OPERATIONAL</div>
+            </div>
+
+            <div class="uptime-viz">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 700;">Network Uptime</span>
+                    <span style="color: var(--accent); font-weight: 800;">99.98%</span>
+                </div>
+                
+                
+                
+                <div class="bar-container">
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar" style="background: var(--warning); opacity: 1;"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <div class="bar"></div><div class="bar"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; color: var(--muted); font-size: 0.75rem;">
+                    <span>30 Days Ago</span>
+                    <span>Today</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="incident-log">
+            <h2 class="reveal" style="margin-bottom: 3rem; font-size: 2rem;">Incident History</h2>
+            
+            <div class="incident-item reveal">
+                <div class="incident-date">January 12, 2026</div>
+                <h3 class="incident-title">Minor Latency in Automation Webhooks</h3>
+                <p class="incident-desc">Scheduled maintenance on the lead-processing cluster resulted in a 400ms delay for approximately 12 minutes. Resolved with no data loss.</p>
+            </div>
+
+            <div class="incident-item reveal">
+                <div class="incident-date">December 24, 2025</div>
+                <h3 class="incident-title">No incidents reported this month.</h3>
+                <p class="incident-desc">System stability remained at 100% throughout the holiday period.</p>
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

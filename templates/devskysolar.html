@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Sky Solar | Next-Gen Glassmorphism Energy Hub</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030a1c;
+            --main-blue: #0ea5e9; /* Electric Blue */
+            --glow-blue: rgba(14, 165, 233, 0.15);
+            --glass-bg: rgba(15, 32, 66, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(14, 165, 233, 0.2);
+            --text: #f0fdf4;
+            --text-dark: #cbd5e1;
+            --muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; line-height: 1.7; }
+
+        /* ---------- ENHANCED AMBIENT ENERGY GLOW NODES ---------- */
+        .plasma-node { position: fixed; border-radius: 50%; z-index: -1; pointer-events: none; filter: blur(140px); }
+        .node-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(14,165,233,0.18), transparent 70%); top: -200px; left: -200px; }
+        .node-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(2,132,199,0.15), transparent 70%); bottom: 15%; right: -150px; }
+        .node-3 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(56,189,248,0.1), transparent 70%); top: 45%; left: -250px; }
+
+        /* ---------- CENTRAL STRUCTURAL LAYOUT ---------- */
+        .massive-scroller {
+            max-width: 1300px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 9rem; /* High vertical layout gaps for max scroll depth */
+        }
+
+        /* ---------- GLOBAL ARCHITECTURE SIGNALS ---------- */
+        .glass-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--main-blue);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+        .section-headline { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -2px; line-height: 1.15; margin-bottom: 3.5rem; }
+        .section-headline span { background: linear-gradient(135deg, #fff, var(--main-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ---------- UNIVERSAL GLASSMORPHISM CLASS ---------- */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.05);
+        }
+
+        /* =========================================================
+           SECTION 1: HERO CONTROL SYSTEMS
+        ========================================================= */
+        .hero-dashboard {
+            padding: 8rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+        .hero-dashboard h1 { font-size: clamp(3.5rem, 8vw, 6.5rem); font-weight: 800; letter-spacing: -4px; line-height: 0.95; margin-bottom: 2rem; }
+        .hero-dashboard h1 span { background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-dashboard p { color: var(--text-dark); font-size: 1.3rem; max-width: 950px; margin: 0 auto 4rem; line-height: 1.9; }
+        
+        .communication-deck { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; border-top: 1px solid var(--glass-border); padding-top: 4rem; }
+        .glass-cta {
+            padding: 1.2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.4s cubic-bezier(.2, 1, .2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            backdrop-filter: blur(10px);
+        }
+        .glass-cta.electric-glow { background: var(--main-blue); color: #020617; border: none; box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3); }
+        .glass-cta:hover { transform: translateY(-4px); border-color: var(--main-blue); background: rgba(14, 165, 233, 0.05); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .glass-cta.electric-glow:hover { background: #fff; color: #000; box-shadow: 0 25px 50px rgba(255,255,255,0.15); }
+
+        /* =========================================================
+           SECTION 2: LIVE METRIC TELEMETRY (30 DEPLOYMENTS)
+        ========================================================= */
+        .telemetry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; padding: 4rem 2rem; text-align: center; }
+        .telemetry-node h2 { font-size: 4.5rem; font-weight: 800; color: #fff; letter-spacing: -3px; line-height: 1; }
+        .telemetry-node h2 span { color: var(--main-blue); font-family: monospace; }
+        .telemetry-node p { color: var(--text-dark); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 0.85rem; font-weight: 700; }
+
+        /* =========================================================
+           SECTION 3: SYSTEM CAPACITY MATRIX
+        ========================================================= */
+        .capacity-matrix { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .capacity-card { padding: 4rem 2.5rem; display: flex; flex-direction: column; justify-content: space-between; transition: 0.4s cubic-bezier(.2, 1, .2, 1); }
+        .capacity-card:hover { transform: translateY(-6px); border-color: rgba(14, 165, 233, 0.3); background: rgba(15, 32, 66, 0.6); }
+        .icon-hub { width: 70px; height: 70px; background: rgba(14, 165, 233, 0.08); border-radius: 22px; display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; border: 1px solid rgba(14, 165, 233, 0.2); }
+        .icon-hub i { font-size: 2rem; color: var(--main-blue); }
+        .capacity-card h3 { font-size: 1.75rem; font-weight: 800; margin-bottom: 1.25rem; color: #fff; letter-spacing: -1px; }
+        .capacity-card p { color: var(--text-dark); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
+        
+        .tag-row { display: flex; flex-wrap: wrap; gap: 0.6rem; border-top: 1px solid var(--glass-border); padding-top: 2rem; }
+        .tag-pill { font-family: monospace; font-size: 0.75rem; color: var(--text-dark); background: rgba(255,255,255,0.03); padding: 0.4rem 0.9rem; border-radius: 10px; border: 1px solid var(--glass-border); }
+
+        /* =========================================================
+           SECTION 4: OPERATIONAL GEOGRAPHY DEEP LOGS (30 UNITS IN CG)
+        ========================================================= */
+        .geo-logboard { padding: 4rem; }
+        .geo-header-desc { color: var(--text-dark); max-width: 700px; margin-bottom: 4rem; font-size: 1.1rem; }
+        .grid-logs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .log-row { display: flex; justify-content: space-between; align-items: center; padding: 2rem 2.5rem; background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); border-radius: 24px; transition: 0.3s; }
+        .log-row:hover { background: rgba(14, 165, 233, 0.03); border-color: rgba(14, 165, 233, 0.25); transform: scale(1.01); }
+        .loc-identity { font-size: 1.3rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 1rem; }
+        .loc-identity i { color: var(--main-blue); }
+        .load-metric { font-family: monospace; font-size: 1.1rem; color: var(--main-blue); font-weight: 800; background: rgba(14, 165, 233, 0.08); padding: 0.4rem 1rem; border-radius: 12px; border: 1px solid rgba(14, 165, 233, 0.15); }
+
+        /* =========================================================
+           SECTION 5: DIFFERENTIATION DECK (WHY WE ARE UNMATCHED)
+        ========================================================= */
+        .unmatched-container { padding: 5rem; display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center; }
+        .unmatched-info h2 { font-size: 3rem; font-weight: 800; letter-spacing: -2px; line-height: 1.2; margin-bottom: 1.5rem; }
+        .unmatched-info p { color: var(--text-dark); font-size: 1.15rem; line-height: 1.8; }
+        
+        .pillars-stack { display: flex; flex-direction: column; gap: 2.5rem; }
+        .pillar-node { display: flex; gap: 1.5rem; }
+        .pillar-icon-box { width: 44px; height: 44px; background: rgba(14, 165, 233, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--main-blue); flex-shrink: 0; font-size: 1rem; border: 1px solid rgba(14, 165, 233, 0.2); }
+        .pillar-details h4 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .pillar-details p { color: var(--text-dark); font-size: 1rem; line-height: 1.6; }
+
+        /* =========================================================
+           SECTION 6: INDUSTRIAL INFRASTRUCTURE BOARD (FOUNDERS)
+        ========================================================= */
+        .boardroom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .executive-profile { padding: 4.5rem 3.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .avatar-glass-ring {
+            width: 210px; height: 210px; border-radius: 50%; padding: 7px;
+            background: linear-gradient(135deg, var(--glass-border), var(--main-blue));
+            margin-bottom: 2.5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .avatar-internal { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: #030a1c; }
+        .avatar-internal img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.6s cubic-bezier(.2, 1, .2, 1); }
+        .executive-profile:hover .avatar-internal img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .executive-profile h2 { font-size: 2.4rem; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 0.25rem; }
+        .executive-profile h4 { color: var(--main-blue); text-transform: uppercase; letter-spacing: 4px; font-size: 0.85rem; font-weight: 800; margin-bottom: 2rem; }
+        .executive-bio { color: var(--text-dark); font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem; max-width: 450px; }
+        
+        .channel-list { display: flex; flex-direction: column; gap: 0.85rem; width: 100%; }
+        .channel-link {
+            padding: 1.1rem; background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); border-radius: 18px;
+            color: var(--text-dark); text-decoration: none; font-size: 1rem; font-weight: 700; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+        }
+        .channel-link:hover { color: #fff; background: rgba(14, 165, 233, 0.05); border-color: rgba(14, 165, 233, 0.3); transform: translateY(-2px); }
+
+        /* =========================================================
+           SECTION 7: INTENSE RESOURCE ECOSYSTEM (STAFF ARCHITECTURE)
+        ========================================================= */
+        .staff-ecosystem { padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: center; }
+        .staff-summary h3 { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem; letter-spacing: -1px; }
+        .staff-summary p { color: var(--text-dark); font-size: 1.15rem; line-height: 1.8; }
+        
+        .staff-distribution { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .distribution-node { padding: 2.5rem; background: rgba(255,255,255,0.01); border: 1px solid var(--glass-border); border-radius: 28px; }
+        .distribution-node h4 { font-size: 2.8rem; font-weight: 800; color: var(--main-blue); line-height: 1; }
+        .distribution-node p { font-size: 1.1rem; font-weight: 700; color: #fff; margin-top: 0.5rem; }
+        .distribution-node span { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.4; }
+
+        /* =========================================================
+           SECTION 8: METICULOUS LIFECYCLE CONTROLS
+        ========================================================= */
+        .lifecycle-track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .lifecycle-node { padding: 2.5rem; position: relative; }
+        .lifecycle-step { font-family: monospace; font-size: 4.5rem; font-weight: 900; color: rgba(14, 165, 233, 0.04); position: absolute; top: 1rem; right: 1.5rem; line-height: 1; }
+        .lifecycle-node h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; margin-top: 1rem; }
+        .lifecycle-node p { color: var(--text-dark); font-size: 0.95rem; line-height: 1.6; }
+
+        /* =========================================================
+           SECTION 9: MASTER CLOSURE TERMINAL
+        ========================================================= */
+        .closure-terminal {
+            background: radial-gradient(circle at center, rgba(15, 32, 66, 0.6) 0%, var(--bg) 100%);
+            border-radius: 64px 64px 0 0; border-top: 1px solid var(--glass-border); padding: 9rem 2rem; text-align: center;
+        }
+        .closure-terminal h2 { font-size: clamp(2.5rem, 7vw, 5rem); font-weight: 800; letter-spacing: -3px; line-height: 1.05; margin-bottom: 2rem; }
+        .closure-terminal p { color: var(--text-dark); font-size: 1.3rem; max-width: 800px; margin: 0 auto 4rem; }
+
+        /* ---------- INTERSECTION REVEAL SYSTEMS ---------- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: 1.2s cubic-bezier(.2, 1, .2, 1); transition-property: opacity, transform; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* ---------- MASSIVE RESPONSIVE COMPLIANCE ---------- */
+        @media(max-width: 1100px) {
+            .capacity-matrix, .lifecycle-track { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media(max-width: 992px) {
+            .massive-scroller { gap: 6rem; margin: 3rem auto; }
+            .hero-dashboard { padding: 4rem 2rem; }
+            .telemetry-grid, .unmatched-container, .boardroom-grid, .staff-ecosystem, .staff-distribution, .grid-logs { grid-template-columns: 1fr !important; }
+            .geo-logboard { padding: 2rem; }
+            .log-row { flex-direction: column; gap: 1rem; text-align: center; }
+            .unmatched-container { padding: 3rem 2rem; gap: 4rem; }
+            .executive-profile { padding: 3rem 2rem; }
+        }
+        @media(max-width: 600px) {
+            .capacity-matrix, .lifecycle-track { grid-template-columns: 1fr !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="plasma-node node-1"></div>
+    <div class="plasma-node node-2"></div>
+    <div class="plasma-node node-3"></div>
+
+    <div class="massive-scroller">
+
+        <section class="hero-dashboard glass-panel reveal">
+            <span class="glass-badge"><i class="fas fa-charging-station"></i> Chhattisgarh Solar Network</span>
+            <h1>Dev Sky <span>Solar</span></h1>
+            <p>Advanced residential and high-efficiency rooftop engineering solutions. Deployed inside highly transparent frameworks to process custom energy distribution layouts, reduce systemic transmission overheads, and secure grid autonomy across real-world physical nodes.</p>
+            
+            <div class="communication-deck">
+                <a href="https://devskysolar.in" target="_blank" class="glass-cta electric-glow"><i class="fas fa-globe"></i> devskysolar.in</a>
+                <a href="mailto:contact@devskysolar.in" class="glass-cta"><i class="fas fa-envelope"></i> contact@devskysolar.in</a>
+                <a href="tel:+919403891308" class="glass-cta"><i class="fas fa-phone-alt"></i> +91 9403891308</a>
+            </div>
+        </section>
+
+        <section class="telemetry-grid glass-panel reveal">
+            <div class="telemetry-node"><h2>30<span>+</span></h2><p>Successful Installations</p></div>
+            <div class="telemetry-node"><h2>12<span>+</span></h2><p>Active Field Specialists</p></div>
+            <div class="telemetry-node"><h2>100<span>%</span></h2><p>State Grid Approval Rate</p></div>
+            <div class="telemetry-node"><h2>4<span>+</span></h2><p>Live Deployed Applications</p></div>
+        </section>
+
+        <section class="reveal">
+            <span class="glass-badge">Core Products</span>
+            <h2 class="section-headline">Precision Structural Load<br><span>Engineering Dimensions</span></h2>
+            
+            <div class="capacity-matrix">
+                <div class="capacity-card glass-panel">
+                    <div class="card-top">
+                        <div class="icon-hub"><i class="fas fa-home"></i></div>
+                        <h3>3.0 kW Systems</h3>
+                        <p>Perfectly calibrated for optimized micro-grid domestic load offsetting. Engineered using premium components to manage residential base currents continuously.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag-pill">Mono-PERC Arrays</span>
+                        <span class="tag-pill">Smart Meter Integration</span>
+                    </div>
+                </div>
+                <div class="capacity-card glass-panel">
+                    <div class="card-top">
+                        <div class="icon-hub"><i class="fas fa-bolt"></i></div>
+                        <h3>3.3 kW Systems</h3>
+                        <p>High-efficiency custom distribution configurations tailored to scale multi-appliance home loads with minimal grid dependency and seamless safety earthing.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag-pill">High-Voltage Isolation</span>
+                        <span class="tag-pill">Anti-Islanding Safety</span>
+                    </div>
+                </div>
+                <div class="capacity-card glass-panel">
+                    <div class="card-top">
+                        <div class="icon-hub"><i class="fas fa-building"></i></div>
+                        <h3>3.5 kW Systems</h3>
+                        <p>Heavy-duty residential and semi-commercial rooftop architectures engineered to maximize peak solar irradiation capture metrics.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag-pill">String Inverter Arrays</span>
+                        <span class="tag-pill">Weatherproof Structs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="geo-logboard glass-panel reveal">
+            <span class="glass-badge">Telemetry Tracking</span>
+            <h2 class="section-headline" style="margin-bottom:1rem;">Operational Regional Plants</h2>
+            <p class="geo-header-desc">Complete spatial distribution mapping across primary production hubs in Chhattisgarh. Our 30 active units run seamlessly within verified grid synchronization protocols.</p>
+            
+            <div class="grid-logs">
+                <div class="log-row"><span class="loc-identity"><i class="fas fa-map-marker-alt"></i> Bhilai Grid Nodes</span><span class="load-metric">3.0kW - 3.5kW</span></div>
+                <div class="log-row"><span class="loc-identity"><i class="fas fa-map-marker-alt"></i> Durg Distribution</span><span class="load-metric">3.0kW - 3.5kW</span></div>
+                <div class="log-row"><span class="loc-identity"><i class="fas fa-map-marker-alt"></i> Kanker Structural Arrays</span><span class="load-metric">3.0kW - 3.5kW</span></div>
+                <div class="log-row"><span class="loc-identity"><i class="fas fa-map-marker-alt"></i> Raipur Central Networks</span><span class="load-metric">3.0kW - 3.5kW</span></div>
+                <div class="log-row"><span class="loc-identity"><i class="fas fa-map-marker-alt"></i> Kurud Regional Systems</span><span class="load-metric">3.0kW - 3.5kW</span></div>
+                <div class="log-row"><span class="loc-identity"><i class="fas fa-map-marker-alt"></i> Dhamtari Local Grid Hubs</span><span class="load-metric">3.0kW - 3.5kW</span></div>
+            </div>
+        </section>
+
+        <section class="unmatched-container glass-panel reveal">
+            <div class="unmatched-info">
+                <span class="glass-badge">Core Differentiator</span>
+                <h2>Why Dev Sky Solar Is Completely Distinct</h2>
+                <p>We systematically reject general hardware blueprints. Modern solar deployments demand precise environmental calculations, software optimization, and explicit long-term physical structural integrity.</p>
+            </div>
+            <div class="pillars-stack">
+                <div class="pillar-node">
+                    <div class="pillar-icon-box"><i class="fas fa-shield-alt"></i></div>
+                    <div class="pillar-details">
+                        <h4>Zero Friction Communication</h4>
+                        <p>Our automation engines process real-time customer data instantly through custom messaging APIs, keeping users updated with absolutely zero delay.</p>
+                    </div>
+                </div>
+                <div class="pillar-node">
+                    <div class="pillar-icon-box"><i class="fas fa-chart-line"></i></div>
+                    <div class="pillar-details">
+                        <h4>Maximized Conversion Ratios</h4>
+                        <p>Structural pitches, azimuth indices, and row spaces are explicitly computed to eliminate shadow footprint degradation and secure high operational efficiencies.</p>
+                    </div>
+                </div>
+                <div class="pillar-node">
+                    <div class="pillar-icon-box"><i class="fas fa-fingerprint"></i></div>
+                    <div class="pillar-details">
+                        <h4>Strict Regulatory Clearance</h4>
+                        <p>Seamless execution of localized net-metering approvals, safety earthing checks, and statutory disconnector protocols.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <span class="glass-badge">Board Matrix</span>
+            <h2 class="section-headline">The Architects Executing<br><span>The System Infrastructure</span></h2>
+            
+            <div class="boardroom-grid">
+                <div class="executive-profile glass-panel">
+                    <div class="avatar-glass-ring">
+                        <div class="avatar-internal">
+                            <img src="static/domendra.png" alt="Domendra Sahu" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80';">
+                        </div>
+                    </div>
+                    <h2>Domendra Sahu</h2>
+                    <h4>Founder & Corporate Director</h4>
+                    <p class="executive-bio">Regulates organizational positioning, end-to-end supply metrics, government regulatory interface, and high-capacity state-level corporate scaling trajectories.</p>
+                    
+                    <div class="channel-list">
+                        <a href="mailto:domendra@devskysolar.in" class="channel-link"><i class="fas fa-envelope"></i> domendra@devskysolar.in</a>
+                        <a href="tel:+919302397908" class="channel-link"><i class="fas fa-phone-alt"></i> +91 9302397908</a>
+                    </div>
+                </div>
+
+                <div class="executive-profile glass-panel">
+                    <div class="avatar-glass-ring">
+                        <div class="avatar-internal">
+                            <img src="static/yash.png" alt="Yashwant Sahu" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80';">
+                        </div>
+                    </div>
+                    <h2>Yashwant Sahu</h2>
+                    <h4>Co-Founder & Lead Technologist</h4>
+                    <p class="executive-bio">Computer Science Engineer administering the digital layer, performance analytics infrastructure, real-time messaging pipes, and asset optimization parameters.</p>
+                    
+                    <div class="channel-list">
+                        <a href="mailto:yashwant@devskysolar.in" class="channel-link"><i class="fas fa-envelope"></i> yashwant@devskysolar.in</a>
+                        <a href="tel:+917987190554" class="channel-link"><i class="fas fa-phone-alt"></i> +91 7987190554</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="staff-ecosystem glass-panel reveal">
+            <div class="staff-summary">
+                <span class="glass-badge">Human Intelligence</span>
+                <h3>Our Specialized Asset Management Matrix</h3>
+                <p>Deploying alternative grids demands distinct skill pools. Our fully integrated internal team operates seamlessly across technical designs and heavy-duty field mechanics.</p>
+            </div>
+            <div class="staff-distribution">
+                <div class="distribution-node">
+                    <h4>04 Nodes</h4>
+                    <p>Core Engineering & Tech</p>
+                    <span>Oversees continuous site structural designs, automated lead channels, and net-metering interface validation scripts.</span>
+                </div>
+                <div class="distribution-node">
+                    <h4>08 Specialists</h4>
+                    <p>On-Site Construction Team</p>
+                    <span>Directs structural fabrication, module array linkages, inverted grid synchronization, and strict load testing protocols.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <span class="glass-badge">Technical Flow</span>
+            <h2 class="section-headline">From Initial Site Audit<br><span>To Synchronized Power Flow</span></h2>
+            
+            <div class="lifecycle-track">
+                <div class="lifecycle-node glass-panel">
+                    <div class="lifecycle-step">01</div>
+                    <h3>Site Survey</h3>
+                    <p>Advanced geographical and shadow indexing diagnostics to calculate exact seasonal solar parameters.</p>
+                </div>
+                <div class="lifecycle-node glass-panel">
+                    <div class="lifecycle-step">02</div>
+                    <h3>Procurement</h3>
+                    <p>Sourcing premium certified modules, robust structural mountings, and tier-1 smart inverter systems.</p>
+                </div>
+                <div class="lifecycle-node glass-panel">
+                    <div class="lifecycle-step">03</div>
+                    <h3>Erection</h3>
+                    <p>On-site mechanical structural fabrication, rigorous string wiring layout, and execution of circuit isolation loops.</p>
+                </div>
+                <div class="lifecycle-node glass-panel">
+                    <div class="lifecycle-step">04</div>
+                    <h3>Grid Interlock</h3>
+                    <p>Final net-metering inspections, compliance clearing actions, and operational system commissioning.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="closure-terminal reveal">
+            <h2>Ready to Connect to high-performance Clean Energy?</h2>
+            <p>Get in immediate alignment with our core corporate directors to process detailed system parameters, technical pricing quotes, and structural load assessments.</p>
+            <a href="https://devskysolar.in/leads"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="glass-cta electric-glow"
+   style="display:inline-flex; padding: 1.5rem 4.5rem; border-radius: 20px; font-size: 1.2rem;">
+    Initiate System Audit
+</a>
+        </section>
+
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.05 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

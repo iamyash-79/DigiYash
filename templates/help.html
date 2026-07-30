@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+        /* ---------- HELP HERO ---------- */
+        .help-hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at bottom, #1e1b4b 0%, var(--bg) 80%);
+        }
+        .help-hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 2rem; }
+        
+        .search-container {
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 1.5rem 2rem 1.5rem 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .search-container input:focus { border-color: var(--accent); background: rgba(255, 255, 255, 0.08); }
+        .search-container i { position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%); color: var(--muted); }
+
+        /* ---------- HELP CATEGORIES ---------- */
+        .help-grid {
+            max-width: 1400px;
+            margin: -60px auto 100px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .help-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 3rem;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            color: inherit;
+        }
+        .help-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            background: var(--surface);
+        }
+        .help-card i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .help-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .help-card p { color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+
+        /* ---------- FAQ SECTION ---------- */
+        .faq-section { max-width: 900px; margin: 100px auto; padding: 0 2rem; }
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .faq-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-header h4 { font-size: 1.1rem; font-weight: 600; }
+        .faq-content {
+            max-height: 0;
+            padding: 0 2rem;
+            color: var(--muted);
+            line-height: 1.7;
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+        .faq-item.active .faq-content { max-height: 200px; padding-bottom: 1.5rem; opacity: 1; }
+        .faq-item.active { border-color: var(--accent); }
+
+        /* ---------- CONTACT BOX ---------- */
+        .support-cta {
+            max-width: 1200px;
+            margin: 100px auto;
+            background: linear-gradient(135deg, #1e1b4b 0%, #030712 100%);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .support-cta h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .btn-group { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2rem; }
+        .support-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .primary { background: var(--accent); color: white; }
+        .secondary { border: 1px solid var(--border); color: white; }
+        .support-btn:hover { transform: translateY(-3px); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .btn-group { flex-direction: column; }
+            .help-grid { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="help-hero">
+        <h1 class="reveal">How can we help?</h1>
+        <div class="search-container reveal" style="transition-delay: 0.1s;">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for documentation, project updates, or billing...">
+        </div>
+    </section>
+
+    <section class="help-grid">
+        <a href="#" class="help-card reveal">
+            <i class="fas fa-rocket"></i>
+            <h3>Getting Started</h3>
+            <p>Learn about our onboarding process, project timelines, and initial strategy audits.</p>
+        </a>
+        <a href="#" class="help-card reveal" style="transition-delay: 0.1s;">
+            <i class="fas fa-code-branch"></i>
+            <h3>Technical Support</h3>
+            <p>Help with API integrations, hosting environments, and performance monitoring tools.</p>
+        </a>
+        <a href="#" class="help-card reveal" style="transition-delay: 0.2s;">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <h3>Billing & Plans</h3>
+            <p>Information regarding retainer models, project milestones, and payment methods.</p>
+        </a>
+    </section>
+
+    <section class="faq-section">
+        <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+            <h2 style="font-size: 2.5rem;">Common Questions</h2>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-header">
+                <h4>What is the typical timeline for a solar website overhaul?</h4>
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-content">
+                Full-scale performance engineering for solar platforms typically takes 6-8 weeks from audit to launch.
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-header">
+                <h4>Do you provide ongoing maintenance?</h4>
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-content">
+                Yes, we offer Elite Retainer plans that include 24/7 monitoring, security updates, and growth experiments.
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <div class="faq-header">
+                <h4>Can you integrate with my existing CRM?</h4>
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-content">
+                Absolutely. We specialize in custom API bridges for Salesforce, HubSpot, and specialized solar CRMs.
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal" style="padding: 0 2rem;">
+        <div class="support-cta">
+            <h2>Still need assistance?</h2>
+            <p style="color: var(--muted); font-size: 1.1rem;">Our engineering team is available for priority support.</p>
+            <div class="btn-group">
+                <a href="/connect" class="support-btn primary">Open a Ticket</a>
+                <a href="https://wa.me/+917987190554" class="support-btn secondary"><i class="fab fa-whatsapp"></i> Chat with Us</a>
+            </div>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script>
+        // Reveal animation
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                const icon = header.querySelector('i');
+                icon.classList.toggle('fa-plus');
+                icon.classList.toggle('fa-minus');
+            });
+        });
+    </script>
+
+</body>
+</html>

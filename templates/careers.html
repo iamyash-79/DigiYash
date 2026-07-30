@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+        /* ---------- CAREERS HERO ---------- */
+        .careers-hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at top, #1e1b4b 0%, var(--bg) 80%);
+        }
+        .careers-hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; letter-spacing: -3px; line-height: 1; }
+        .careers-hero p { color: var(--accent); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; margin-top: 1.5rem; }
+
+        /* ---------- CULTURE SECTION ---------- */
+        .culture-grid {
+            max-width: 1400px;
+            margin: -60px auto 100px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .culture-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 3rem;
+            transition: 0.4s;
+        }
+        .culture-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .culture-card i { font-size: 2rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .culture-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .culture-card p { color: var(--muted); line-height: 1.6; }
+
+        /* ---------- OPEN ROLES ---------- */
+        .roles-section { max-width: 1000px; margin: 100px auto; padding: 0 2rem; }
+        .role-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.5rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            margin-bottom: 1.5rem;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .role-item:hover { background: rgba(99, 102, 241, 0.05); border-color: var(--accent); }
+        .role-meta h4 { font-size: 1.4rem; margin-bottom: 5px; }
+        .role-meta span { color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .apply-arrow { 
+            width: 50px; height: 50px; 
+            border-radius: 50%; border: 1px solid var(--border); 
+            display: flex; align-items: center; justify-content: center; 
+            transition: 0.3s;
+        }
+        .role-item:hover .apply-arrow { background: var(--accent); border-color: var(--accent); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .role-item { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="careers-hero">
+        <h1 class="reveal">Code with Purpose.<br>Lead with Logic.</h1>
+        <p class="reveal">Join the Digital Elite</p>
+    </section>
+
+    <section class="culture-grid">
+        <div class="culture-card reveal">
+            <i class="fas fa-bolt"></i>
+            <h3>Performance First</h3>
+            <p>We don't settle for "fast enough." We build systems optimized for sub-second execution and massive concurrency.</p>
+        </div>
+        <div class="culture-card reveal" style="transition-delay: 0.1s;">
+            <i class="fas fa-globe"></i>
+            <h3>Remote Excellence</h3>
+            <p>Our team operates globally. We value results, deep work, and clear asynchronous communication over office hours.</p>
+        </div>
+        <div class="culture-card reveal" style="transition-delay: 0.2s;">
+            <i class="fas fa-microchip"></i>
+            <h3>The Tech Edge</h3>
+            <p>Work with the modern stack: Next.js, Python FastAPI, and Edge Computing to solve real-world industry bottlenecks.</p>
+        </div>
+    </section>
+
+    
+
+    <section class="roles-section">
+        <div style="margin-bottom: 4rem;" class="reveal">
+            <h2 style="font-size: 2.5rem; letter-spacing: -1px;">Open Positions</h2>
+            <p style="color: var(--muted); margin-top: 1rem;">We are currently looking for talented individuals to join our engineering and growth teams.</p>
+        </div>
+
+        <a href="#" class="role-item reveal">
+            <div class="role-meta">
+                <h4>Senior Full-Stack Engineer</h4>
+                <span>Remote / Next.js & Node.js</span>
+            </div>
+            <div class="apply-arrow"><i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="#" class="role-item reveal" style="transition-delay: 0.1s;">
+            <div class="role-meta">
+                <h4>Automation Specialist</h4>
+                <span>Remote / Python & CRM Integrations</span>
+            </div>
+            <div class="apply-arrow"><i class="fas fa-arrow-right"></i></div>
+        </a>
+
+        <a href="#" class="role-item reveal" style="transition-delay: 0.2s;">
+            <div class="role-meta">
+                <h4>Growth Strategist</h4>
+                <span>Remote / Technical SEO & Data Analytics</span>
+            </div>
+            <div class="apply-arrow"><i class="fas fa-arrow-right"></i></div>
+        </a>
+    </section>
+
+    <section class="reveal" style="text-align: center; padding: 100px 2rem; border-top: 1px solid var(--border);">
+        <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Don't see a perfect fit?</h2>
+        <p style="color: var(--muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            We're always looking for exceptional talent in the Solar and Travel tech sectors. Send your portfolio to <b>careers@sahuone.com</b>
+        </p>
+        <a href="mailto:careers@sahuone.com" style="color: var(--accent); font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;">General Application <i class="fas fa-envelope" style="margin-left: 10px;"></i></a>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

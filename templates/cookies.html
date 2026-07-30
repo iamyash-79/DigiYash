@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; line-height: 1.7; }
+
+        /* ---------- HERO ---------- */
+        .cookie-hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at bottom, #1e1b4b 0%, var(--bg) 80%);
+        }
+        .cookie-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
+        .cookie-hero p { color: var(--accent); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* ---------- CONTENT ---------- */
+        .cookie-container {
+            max-width: 1000px;
+            margin: -50px auto 100px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cookie-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 4rem;
+        }
+
+        .cookie-section { margin-bottom: 3.5rem; }
+        .cookie-section h2 { font-size: 1.8rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 15px; }
+        .cookie-section h2 i { color: var(--accent); font-size: 1.2rem; }
+        .cookie-section p { color: var(--muted); margin-bottom: 1.2rem; }
+
+        /* TABLE STYLE */
+        .cookie-table-wrapper { overflow-x: auto; margin: 2rem 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        th, td { padding: 1.2rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        th { background: rgba(99, 102, 241, 0.1); color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
+        td { color: var(--muted); }
+        tr:last-child td { border-bottom: none; }
+
+        .settings-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--text);
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .settings-btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .cookie-card { padding: 2.5rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="cookie-hero">
+        <p class="reveal">Transparency Report</p>
+        <h1 class="reveal">Cookie Policy</h1>
+    </section>
+
+    <main class="cookie-container">
+        <div class="cookie-card reveal">
+            
+            <div class="cookie-section">
+                <h2><i class="fas fa-cookie-bite"></i> 01. Tech & Persistence</h2>
+                <p>At SahuOne Technologies, we use cookies to optimize your experience. Unlike standard trackers, our implementation focuses on <b>edge-latency reduction</b> and <b>session-state management</b> to ensure your interaction with our growth systems is seamless.</p>
+            </div>
+
+            
+
+            <div class="cookie-section">
+                <h2><i class="fas fa-layer-group"></i> 02. Taxonomy of Cookies</h2>
+                <p>We categorize our cookies based on their technical function within our architecture:</p>
+                
+                <div class="cookie-table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Purpose</th>
+                                <th>Persistence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Essential</td>
+                                <td>Enables core security and form submissons.</td>
+                                <td>Session</td>
+                            </tr>
+                            <tr>
+                                <td>Performance</td>
+                                <td>Tracks load speeds and rendering bottlenecks.</td>
+                                <td>Persistent</td>
+                            </tr>
+                            <tr>
+                                <td>Analytics</td>
+                                <td>Helps us refine our growth framework logic.</td>
+                                <td>2 Years</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cookie-section">
+                <h2><i class="fas fa-cog"></i> 03. Management & Control</h2>
+                <p>Most browsers allow you to manage cookie preferences. However, please note that disabling essential performance cookies may increase the Largest Contentful Paint (LCP) and impact the overall fluidity of our digital audits.</p>
+                <a href="#" class="settings-btn">Manage Cookie Preferences</a>
+            </div>
+
+            <div style="text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+                Last Revised: January 18, 2026
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

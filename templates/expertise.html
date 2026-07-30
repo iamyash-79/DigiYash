@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expertise | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at center, #1e1b4b 0%, var(--bg) 75%);
+        }
+        .hero p { color: var(--accent); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; letter-spacing: -4px; line-height: 0.95; }
+
+        /* ---------- CAPABILITIES GRID ---------- */
+        .services-container {
+            max-width: 1400px;
+            margin: -100px auto 100px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 4rem;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--accent);
+            background: var(--surface);
+        }
+
+        .service-icon {
+            width: 70px; height: 70px;
+            background: linear-gradient(135deg, var(--accent), #4338ca);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+        .service-icon i { font-size: 1.8rem; color: white; }
+
+        .service-card h3 { font-size: 2rem; margin-bottom: 1.5rem; font-weight: 700; letter-spacing: -1px; }
+        .service-card p { color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; font-size: 1.1rem; }
+
+        .service-list { list-style: none; }
+        .service-list li {
+            margin-bottom: 1rem;
+            display: flex; align-items: center;
+            font-size: 1rem; color: var(--text);
+        }
+        .service-list li i { color: var(--accent); margin-right: 15px; font-size: 0.9rem; }
+
+        /* ---------- TECHNOLOGY STACK ---------- */
+        .tech-section { padding: 120px 2rem; border-top: 1px solid var(--border); }
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+        .tech-box {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .tech-box:hover { background: rgba(255,255,255,0.02); border-color: var(--accent); }
+        .tech-box h4 { font-size: 1.2rem; margin-top: 1rem; color: var(--muted); }
+
+        /* ---------- CTA ---------- */
+        .cta-box {
+            max-width: 1300px; margin: 140px auto;
+            background: linear-gradient(135deg, #1e1b4b 0%, #030712 100%);
+            border: 1px solid var(--accent);
+            border-radius: 50px; padding: 6rem 2rem; text-align: center;
+        }
+        .cta-box h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem; letter-spacing: -2px; }
+
+        /* ---------- ANIMATIONS ---------- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 992px) {
+            .services-container { grid-template-columns: 1fr; }
+            .tech-grid { grid-template-columns: 1fr 1fr; }
+            .hero { height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="hero">
+        <p class="reveal">Expertise & Services</p>
+        <h1 class="reveal">Built for<br>The Digital Elite.</h1>
+    </section>
+
+    <section class="services-container">
+        <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-terminal"></i></div>
+            <h3>Engineered<br>Development</h3>
+            <p>We don't just write code; we architect systems. Specialized in high-concurrency environments for Solar and E-commerce.</p>
+            <ul class="service-list">
+                <li><i class="fas fa-bolt"></i> Next.js Server-Side Mastery</li>
+                <li><i class="fas fa-bolt"></i> Scalable API Architectures</li>
+                <li><i class="fas fa-bolt"></i> Headless Commerce Flow</li>
+            </ul>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay: 0.1s;">
+            <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Growth<br>Systems</h3>
+            <p>Data-driven performance optimization that focuses on the only metric that matters: your bottom line.</p>
+            <ul class="service-list">
+                <li><i class="fas fa-bolt"></i> Predictive User Analytics</li>
+                <li><i class="fas fa-bolt"></i> Advanced A/B Frameworks</li>
+                <li><i class="fas fa-bolt"></i> Technical SEO Domination</li>
+            </ul>
+        </div>
+
+        <div class="service-card reveal" style="transition-delay: 0.2s;">
+            <div class="service-icon"><i class="fas fa-microchip"></i></div>
+            <h3>Automation<br>& SaaS</h3>
+            <p>Eliminate manual friction. We build custom dashboards and internal tools that save hundreds of hours monthly.</p>
+            <ul class="service-list">
+                <li><i class="fas fa-bolt"></i> Custom CRM Integrations</li>
+                <li><i class="fas fa-bolt"></i> Solar Lead Automation</li>
+                <li><i class="fas fa-bolt"></i> Automated Reporting Suites</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="tech-section">
+        <div style="text-align: center;" class="reveal">
+            <p style="color: var(--accent); font-weight: 700; letter-spacing: 3px; text-transform: uppercase;">Technical Arsenal</p>
+            <h2 style="font-size: 3rem; margin-top: 1rem;">The Stack Behind the Soul</h2>
+        </div>
+
+        <div class="tech-grid reveal">
+            <div class="tech-box"><i class="fab fa-react" style="font-size: 2.5rem; color: #61DAFB;"></i><h4>React / Next.js</h4></div>
+            <div class="tech-box"><i class="fab fa-python" style="font-size: 2.5rem; color: #3776AB;"></i><h4>Python / Django</h4></div>
+            <div class="tech-box"><i class="fab fa-node-js" style="font-size: 2.5rem; color: #339933;"></i><h4>Node.js</h4></div>
+            <div class="tech-box"><i class="fas fa-database" style="font-size: 2.5rem; color: #47A248;"></i><h4>MongoDB / SQL</h4></div>
+            <div class="tech-box"><i class="fab fa-aws" style="font-size: 2.5rem; color: #FF9900;"></i><h4>Cloud Infra</h4></div>
+            <div class="tech-box"><i class="fas fa-mobile-alt" style="font-size: 2.5rem; color: #6366f1;"></i><h4>Hybrid Mobile</h4></div>
+            <div class="tech-box"><i class="fas fa-project-diagram" style="font-size: 2.5rem; color: #00A3E0;"></i><h4>System Design</h4></div>
+            <div class="tech-box"><i class="fas fa-shield-alt" style="font-size: 2.5rem; color: #FFD43B;"></i><h4>Cyber Security</h4></div>
+        </div>
+    </section>
+
+    <section class="reveal" style="padding: 0 2rem;">
+        <div class="cta-box">
+            <h2>Ready to Outpace the Competition?</h2>
+            <p style="margin-bottom: 3rem; color: var(--muted); font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                We are currently accepting new projects for Q1 2026. Secure your slot for a digital overhaul.
+            </p>
+            <a href="/connect" style="padding: 1.5rem 4rem; background: var(--accent); color: white; text-decoration: none; border-radius: 100px; font-weight: 800; display: inline-block;">Start Your Audit</a>
+        </div>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

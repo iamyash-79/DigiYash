@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; line-height: 1.7; }
+
+        /* ---------- POLICY HERO ---------- */
+        .policy-hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at bottom, #1e1b4b 0%, var(--bg) 80%);
+        }
+        .policy-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem; }
+        .policy-hero p { color: var(--accent); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* ---------- CONTENT LAYOUT ---------- */
+        .policy-container {
+            max-width: 1000px;
+            margin: -50px auto 100px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .policy-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .policy-section { margin-bottom: 3.5rem; }
+        .policy-section:last-child { margin-bottom: 0; }
+        
+        .policy-section h2 { 
+            font-size: 1.8rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .policy-section h2 i { color: var(--accent); font-size: 1.2rem; }
+        
+        .policy-section p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; }
+        
+        .data-list { list-style: none; margin-top: 1rem; }
+        .data-list li {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+        .data-list li i { color: var(--accent); font-size: 0.8rem; }
+
+        /* ---------- UPDATE BOX ---------- */
+        .last-updated {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .policy-card { padding: 2.5rem 1.5rem; }
+            .policy-hero { height: 40vh; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="policy-hero">
+        <p class="reveal">Legal Governance</p>
+        <h1 class="reveal">Privacy Policy</h1>
+    </section>
+
+    <main class="policy-container">
+        <div class="policy-card reveal">
+            
+            <div class="policy-section">
+                <h2><i class="fas fa-shield-alt"></i> 01. Introduction</h2>
+                <p>At SahuOne Technologies, we prioritize the security and privacy of our clients in the Solar, E-commerce, and Travel sectors. This policy outlines how we handle data collected through our performance engineering and automation services.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2><i class="fas fa-database"></i> 02. Data Collection</h2>
+                <p>To provide high-velocity digital solutions, we may collect the following information:</p>
+                <ul class="data-list">
+                    <li><i class="fas fa-check-circle"></i> Business Contact Information (Name, Email, Phone)</li>
+                    <li><i class="fas fa-check-circle"></i> Technical Infrastructure Data for System Audits</li>
+                    <li><i class="fas fa-check-circle"></i> Usage Analytics via Performance Monitoring Tools</li>
+                    <li><i class="fas fa-check-circle"></i> Solar Lead Data (for automation clients only)</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2><i class="fas fa-lock"></i> 03. How We Use Data</h2>
+                <p>Data is strictly used to enhance platform performance and automate business logic. We do not sell your business data to third-party brokers. Key uses include:</p>
+                <p>• Optimizing server-side rendering speeds.<br>
+                   • Training predictive analytics models for growth systems.<br>
+                   • Seamless CRM integration and lead flow automation.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2><i class="fas fa-user-shield"></i> 04. Your Rights</h2>
+                <p>Clients have the right to request a full export of their project data, request deletion of non-essential technical logs, and opt-out of performance tracking experiments.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2><i class="fas fa-envelope-open-text"></i> 05. Contact Us</h2>
+                <p>For inquiries regarding data protection or technical security protocols, please contact our lead developer at <b>legal@sahuone.com</b>.</p>
+            </div>
+
+            <div class="last-updated">
+                Last Updated: January 18, 2026
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

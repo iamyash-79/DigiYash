@@ -1,116 +1,277 @@
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-    /* Grid Utility */
-    .grid {
-        display: grid;
-        gap: 2rem;
-    }
+:root {
+  --footer-bg: #0f172a;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --accent: #6366f1;
+  --text-dim: #94a3b8;
+  --text-bright: #f8fafc;
+  --border: rgba(255, 255, 255, 0.08);
+}
 
-    .grid-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.ultra-footer {
+  background-color: var(--footer-bg);
+  padding: 80px 0 30px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  border-top: 1px solid var(--border);
+  color: var(--text-bright);
+}
 
-    @media(max-width: 768px) {
-        .grid-3 {
-            grid-template-columns: 1fr;
-            text-align: center;
-        }
-        .footer .grid-3 > div {
-            margin-bottom: 1.5rem;
-        }
-        .footer .grid-3 > div:last-child {
-            margin-bottom: 0;
-        }
-        .footer ul {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .footer img {
-            margin: 0 auto 1rem auto;
-        }
-        .footer h3 {
-            font-size: 1.4rem;
-        }
-        .footer p,
-        .footer ul li a {
-            font-size: 1rem;
-        }
-    }
+/* GRID */
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding: 0 24px;
+}
 
-    /* Footer Styling */
-    .footer {
-        background: #f0f8ff; /* Very light blue */
-        color: #333;
-        padding: 4rem 2rem;
-        margin-top: auto;
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-    }
+/* BRAND CARD */
+.footer-brand-card {
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+}
 
-    .footer a {
-        color: #00796B;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-size: 1.05rem;
-    }
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .footer a:hover {
-        color: #004D40;
-    }
+.logo-square {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  border-radius: 8px;
+}
 
-    .footer h3 {
-        color: #00796B;
-        font-size: 1.6rem;
-        margin-bottom: 1.5rem;
-    }
+.brand-desc {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
 
-    .footer p {
-        color: #555;
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
-    }
+/* COLUMNS */
+.footer-col h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  color: var(--text-bright);
+}
 
-    .footer ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .footer ul li a {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        display: block;
-    }
+.footer-links li {
+  margin-bottom: 14px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+  transform: translateX(5px);
+}
+
+/* CONTACT */
+.contact-info {
+  margin-top: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.contact-item i {
+  color: var(--accent);
+}
+
+/* SOCIAL */
+.social-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-bright);
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.social-icon:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* BOTTOM BAR */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* MOBILE — REAL FIX */
+@media (max-width: 640px) {
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .footer-brand-card,
+  .footer-col {
+    align-items: center;
+  }
+
+  .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+
+  .social-row {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .footer-bottom > div {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}
 </style>
 
-<footer class="footer">
-    <div class="grid grid-3 animate-on-scroll">
-        <div>
-            <img src="static/logo.png" alt="DigiYash Logo" style="background:white; padding:5px; border-radius:6px; height:40px;">
-            <p>
-                <strong>1234 N Spring St, Los Angeles, CA 90012</strong><br>
-                <strong><a href="mailto:contact@digiyash.tech">contact@digiyash.tech</a></strong>
-            </p>
-        </div>
-        <div>
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a href="about">ABOUT</a></li>
-                <li><a href="services">SERVICES</a></li>
-                <li><a href="contact">CONTACT</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3>Follow Us</h3>
-            <ul>
-                <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
-                <li><a href="https://www.facebook.com/iamyash798"><i class="fab fa-facebook"></i> Facebook</a></li>
-                <li><a href="https://www.instagram.com/iamyash_79?igsh=MW5pd2ExemcwdjlycA=="><i class="fab fa-instagram"></i> Instagram</a></li>
-            </ul>
-        </div>
+<footer class="ultra-footer">
+  <div class="footer-grid">
+    
+    <div class="footer-brand-card">
+      <div class="footer-logo">
+        <div class="logo-square"></div> SahuOne
+      </div>
+      <p class="brand-desc">
+        Creating digital experiences that push boundaries. We combine design and technology to build the future.
+      </p>
+      <div class="social-row">
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+      </div>
     </div>
-    <div style="margin-top:2rem; text-align:center; color: #555;">
-        &copy; 2025 DigiYash | Powered by DigiYash
+
+    <div class="footer-col">
+      <h4>COMPANY</h4>
+      <ul class="footer-links">
+        <li><a href="/philosophy">About Us</a></li>
+        <li><a href="/expertise">Our Services</a></li>
+        <li><a href="/work">Work Portfolio</a></li>
+        <li><a href="/careers">Careers</a></li>
+      </ul>
     </div>
+
+    <div class="footer-col">
+      <h4>RESOURCES</h4>
+      <ul class="footer-links">
+        <li><a href="/help">Help Center</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms of Use</a></li>
+        <li><a href="/documentation">Documentation</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>GET IN TOUCH</h4>
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>hello@sahuone.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+91 79871 90554</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>123 N Spring St, LA, CA</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 SahuOne. All rights reserved.</p>
+    <div style="display: flex; gap: 20px;">
+      <a href="/status" style="color: inherit; text-decoration: none;">Status</a>
+      <a href="/cookies" style="color: inherit; text-decoration: none;">Cookies</a>
+    </div>
+  </div>
 </footer>

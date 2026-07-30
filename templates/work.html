@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | SahuOne Technologies</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); overflow-x: hidden; }
+
+        /* ---------- PORTFOLIO HERO ---------- */
+        .portfolio-hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: radial-gradient(circle at center, #1e1b4b 0%, var(--bg) 80%);
+        }
+        .portfolio-hero h1 { font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 800; letter-spacing: -4px; line-height: 0.95; }
+        .portfolio-hero p { color: var(--accent); font-weight: 700; letter-spacing: 5px; text-transform: uppercase; margin-top: 1.5rem; }
+
+        /* ---------- PROJECT GRID ---------- */
+        .portfolio-container {
+            max-width: 1400px;
+            margin: -100px auto 100px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .project-image {
+            background: var(--surface);
+            border-radius: 40px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 16/10;
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        
+        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .project-card:hover .project-image img { transform: scale(1.05); }
+
+        .project-info h4 { color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 1rem; }
+        .project-info h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1.5rem; letter-spacing: -1.5px; line-height: 1.1; }
+        .project-info p { color: var(--muted); font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; }
+
+        .tech-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .tag { 
+            padding: 6px 16px; 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid var(--border); 
+            border-radius: 100px; 
+            font-size: 0.85rem; 
+            color: var(--text);
+        }
+
+        .view-case {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .view-case i { font-size: 0.8rem; transition: 0.3s; }
+        .view-case:hover i { transform: translateX(8px); color: var(--accent); }
+
+        /* ---------- FOOTER CTA ---------- */
+        .bottom-cta {
+            text-align: center;
+            padding: 100px 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1.2s cubic-bezier(0.2, 1, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .project-card { grid-template-columns: 1fr; gap: 2rem; }
+            .project-card:nth-child(even) .project-info { order: 2; }
+            .project-card:nth-child(even) .project-image { order: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    <section class="portfolio-hero">
+        <h1 class="reveal">Engineered<br>Success.</h1>
+        <p class="reveal">Selected Works 2024—2026</p>
+    </section>
+
+    <main class="portfolio-container">
+        
+        <div class="project-card reveal">
+            <div class="project-image">
+                <img src="static/solar-project.jpg" alt="Solar Automation Dashboard">
+            </div>
+            <div class="project-info">
+                <h4>Solar Energy</h4>
+                <h2>Dev Sky Solar: Lead Automation Engine</h2>
+                <p>Reduced lead response time by 94% through a custom-built headless CRM bridge and predictive ROI calculators.</p>
+                <div class="tech-tags">
+                    <span class="tag">Next.js</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">AWS Lambda</span>
+                    <span class="tag">HubSpot API</span>
+                </div>
+                <a href="#" class="view-case">Explore Strategy <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        
+
+        <div class="project-card reveal">
+            <div class="project-info" style="text-align: right;">
+                <h4>High-End Retail</h4>
+                <h2>LuxeCommerce: Headless Experience</h2>
+                <p>Built a lightning-fast shopping experience for a luxury watch brand, achieving sub-second page transitions and a 40% increase in mobile checkout completion.</p>
+                <div class="tech-tags" style="justify-content: flex-end;">
+                    <span class="tag">React</span>
+                    <span class="tag">Shopify Hydrogen</span>
+                    <span class="tag">Stripe</span>
+                    <span class="tag">Tailwind</span>
+                </div>
+                <a href="#" class="view-case" style="flex-direction: row-reverse;">Explore Strategy <i class="fas fa-arrow-left"></i></a>
+            </div>
+            <div class="project-image">
+                <img src="static/retail-project.jpg" alt="Luxury E-commerce Platform">
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-image">
+                <img src="static/travel-project.jpg" alt="Travel Booking Engine">
+            </div>
+            <div class="project-info">
+                <h4>Tourism & Travel</h4>
+                <h2>SkyBound: Global Booking Portal</h2>
+                <p>Orchestrated a complex multi-API travel engine that aggregates real-time flight and hotel data with zero latency lag.</p>
+                <div class="tech-tags">
+                    <span class="tag">Node.js</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">Redis Edge</span>
+                    <span class="tag">Google Cloud</span>
+                </div>
+                <a href="#" class="view-case">Explore Strategy <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </main>
+
+    <section class="bottom-cta reveal">
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Your project could be next.</h2>
+        <a href="/connect" style="padding: 1.2rem 3rem; background: var(--accent); color: white; text-decoration: none; border-radius: 100px; font-weight: 700; display: inline-block;">Get Started</a>
+    </section>
+
+    {% include 'footer.html' %}
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

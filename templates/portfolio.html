@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Yashwant Sahu — Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Noise/Grid Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- HEADER ---------- */
+        header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            filter: grayscale(100%);
+            transition: 0.4s;
+        }
+        .avatar:hover { filter: grayscale(0%); transform: rotate(-3deg); }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .name { font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+        .role { color: var(--accent); font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-top: 5px; }
+
+        /* ---------- TABS ---------- */
+        .nav-tabs {
+            display: flex;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 8px;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 100px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* ---------- CONTENT ---------- */
+        .content-panel { display: none; animation: fadeIn 0.5s ease forwards; }
+        .content-panel.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Projects Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        .card h3 { font-size: 1.2rem; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .lang { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: var(--accent); }
+        .btn-link {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .btn-link:hover { background: var(--text); color: var(--bg); }
+
+        /* Contact Items */
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .contact-link {
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        .contact-link i { color: var(--accent); font-size: 1.2rem; }
+        .contact-link:hover { border-color: var(--accent); background: rgba(99,102,241,0.05); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+            .contact-row { grid-template-columns: 1fr; }
+            .nav-tabs { flex-wrap: wrap; border-radius: 20px; }
+            .tab-btn { flex: unset; width: 48%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="avatar"><img src="static/photo.jpg" alt="Yashwant Sahu"></div>
+            <div class="hdr-info">
+                <div class="name">Yashwant Sahu</div>
+                <div class="role">_FULL_STACK_DEVELOPER // FOUNDER_SAHUONE</div>
+                <p style="color:var(--muted); font-size: 13px; margin-top: 10px;">Engineering sub-second performance for Solar & E-commerce.</p>
+            </div>
+            <a href="/resume" class="btn-link" style="padding: 12px 24px;">GET RESUME</a>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="projects">01. Projects</button>
+            <button class="tab-btn" data-tab="websites">02. Live Sites</button>
+            <button class="tab-btn" data-tab="contact">03. Connect</button>
+        </nav>
+
+        <main>
+            <section id="projects" class="content-panel active">
+                <div class="grid" id="repoContainer">
+                    </div>
+            </section>
+
+            <section id="websites" class="content-panel">
+                <div class="grid">
+                    <div class="card">
+                        <div>
+                            <h3>SahuOne</h3>
+                            <p>Main agency infrastructure & technical consulting portal.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">NEXT.JS</span>
+                            <a href="https://sahuone.com" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <h3>Dev Sky Solar</h3>
+                            <p>Solar solution platform with automated lead generation systems.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">PYTHON/FLASK</span>
+                            <a href="https://www.devskysolar.in" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <h3>JeevanYatra</h3>
+                            <p>Travel Booking Sites to book for Yatras</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">PYTHON/FLASK</span>
+                            <a href="https://www.jeevanyatra.co.in" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <h3>YourStore</h3>
+                            <p>Headless e-commerce template for high-concurrency retail.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">REACT</span>
+                            <a href="https://yourstore.sahuone.com" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="content-panel">
+                <div class="contact-row">
+                    <a href="tel:+917987190554" class="contact-link"><i class="fas fa-phone"></i> +91 79871 90554</a>
+                    <a href="mailto:syashwant682@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> syashwant682@gmail.com</a>
+                    <a href="https://wa.me/917987190554" class="contact-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://github.com/iamyash-79" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/iamyash79" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://x.com/iamyash_79" class="contact-link"><i class="fab fa-twitter"></i> X / Twitter</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            DESIGNED & ENGINEERED BY YASHWANT SAHU &copy; 2026
+        </footer>
+    </div>
+
+    <script>
+        // TAB LOGIC
+        const buttons = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.content-panel');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-tab');
+                
+                buttons.forEach(b => b.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // GITHUB API
+        const USER = 'iamyash-79';
+        const container = document.getElementById('repoContainer');
+
+        async function fetchRepos() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${USER}/repos?sort=updated&per_page=6`);
+                const data = await response.json();
+                
+                container.innerHTML = data.filter(repo => !repo.fork).map(repo => `
+                    <div class="card">
+                        <div>
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description || 'System architecture and logic repository.'}</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">${repo.language || 'Code'}</span>
+                            <a href="${repo.html_url}" target="_blank" class="btn-link">SOURCE</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--muted);">Unable to load repositories.</p>';
+            }
+        }
+
+        fetchRepos();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Yashwant Sahu — Engineering Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Noise/Grid Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- HEADER ---------- */
+        header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+            filter: grayscale(100%);
+            transition: 0.4s;
+        }
+        .avatar:hover { filter: grayscale(0%); transform: rotate(-3deg); }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .name { font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+        .role { color: var(--accent); font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-top: 5px; }
+
+        /* ---------- TABS ---------- */
+        .nav-tabs {
+            display: flex;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 8px;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 100px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        /* ---------- CONTENT ---------- */
+        .content-panel { display: none; animation: fadeIn 0.5s ease forwards; }
+        .content-panel.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Projects Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        .card h3 { font-size: 1.2rem; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .lang { font-family: 'Fira Code', monospace; font-size: 0.75rem; color: var(--accent); }
+        .btn-link {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .btn-link:hover { background: var(--text); color: var(--bg); }
+
+        /* Contact Items */
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .contact-link {
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        .contact-link i { color: var(--accent); font-size: 1.2rem; }
+        .contact-link:hover { border-color: var(--accent); background: rgba(99,102,241,0.05); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            header { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+            .contact-row { grid-template-columns: 1fr; }
+            .nav-tabs { flex-wrap: wrap; border-radius: 20px; }
+            .tab-btn { flex: unset; width: 48%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="avatar"><img src="static/photo.jpg" alt="Yashwant Sahu"></div>
+            <div class="hdr-info">
+                <div class="name">Yashwant Sahu</div>
+                <div class="role">_FULL_STACK_DEVELOPER // FOUNDER_SAHUONE</div>
+                <p style="color:var(--muted); font-size: 13px; margin-top: 10px;">Engineering sub-second performance for Solar & E-commerce.</p>
+            </div>
+            <a href="/resume" class="btn-link" style="padding: 12px 24px;">GET RESUME</a>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="projects">01. Projects</button>
+            <button class="tab-btn" data-tab="websites">02. Live Sites</button>
+            <button class="tab-btn" data-tab="contact">03. Connect</button>
+        </nav>
+
+        <main>
+            <section id="projects" class="content-panel active">
+                <div class="grid" id="repoContainer">
+                    </div>
+            </section>
+
+            <section id="websites" class="content-panel">
+                <div class="grid">
+                    <div class="card">
+                        <div>
+                            <h3>SahuOne</h3>
+                            <p>Main agency infrastructure & technical consulting portal.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">NEXT.JS</span>
+                            <a href="https://sahuone.com" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <h3>Dev Sky Solar</h3>
+                            <p>Solar solution platform with automated lead generation systems.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">PYTHON/FLASK</span>
+                            <a href="https://www.devskysolar.in" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <h3>JeevanYatra</h3>
+                            <p>Travel Booking Sites to book for Yatras</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">PYTHON/FLASK</span>
+                            <a href="https://www.jeevanyatra.co.in" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <h3>YourStore</h3>
+                            <p>Headless e-commerce template for high-concurrency retail.</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">REACT</span>
+                            <a href="https://yourstore.sahuone.com" class="btn-link">VISIT SITE</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="content-panel">
+                <div class="contact-row">
+                    <a href="tel:+917987190554" class="contact-link"><i class="fas fa-phone"></i> +91 79871 90554</a>
+                    <a href="mailto:syashwant682@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> syashwant682@gmail.com</a>
+                    <a href="https://wa.me/917987190554" class="contact-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://github.com/iamyash-79" class="contact-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/iamyash79" class="contact-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://x.com/iamyash_79" class="contact-link"><i class="fab fa-twitter"></i> X / Twitter</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            DESIGNED & ENGINEERED BY YASHWANT SAHU &copy; 2026
+        </footer>
+    </div>
+
+    <script>
+        // TAB LOGIC
+        const buttons = document.querySelectorAll('.tab-btn');
+        const panels = document.querySelectorAll('.content-panel');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.getAttribute('data-tab');
+                
+                buttons.forEach(b => b.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // GITHUB API
+        const USER = 'iamyash-79';
+        const container = document.getElementById('repoContainer');
+
+        async function fetchRepos() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${USER}/repos?sort=updated&per_page=6`);
+                const data = await response.json();
+                
+                container.innerHTML = data.filter(repo => !repo.fork).map(repo => `
+                    <div class="card">
+                        <div>
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description || 'System architecture and logic repository.'}</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="lang">${repo.language || 'Code'}</span>
+                            <a href="${repo.html_url}" target="_blank" class="btn-link">SOURCE</a>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--muted);">Unable to load repositories.</p>';
+            }
+        }
+
+        fetchRepos();
+    </script>
+</body>
+</html>

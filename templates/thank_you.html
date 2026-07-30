@@ -1,245 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DigiYash - Thank You!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}?v=2">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success | DigiYash Digital</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta http-equiv="refresh" content="10;url=/">
+
     <style>
-        /* Base styles & resets from about.html */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #030712;
+            --surface: #0f172a;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, .08);
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.7;
-            color: #333;
-            background: #ffffff;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: #030712;
+            background: var(--bg); 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            color: #f8fafc;
             min-height: 100vh;
-        }
-
-        /* Hero Title for internal pages - from about.html */
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            font-weight: 900;
-            color: #333; /* Darker text for light theme header */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        /* --- THANK YOU SECTION (Adapted to new theme) --- */
-        .thank-you-section {
             display: flex;
             flex-direction: column;
+        }
+
+        /* ---------- UPDATED WRAPPER ---------- */
+        .thank-you-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            /* Changed from center to flex-start to allow manual top spacing */
+            align-items: flex-start; 
+            /* Push content down further from the header */
+            padding: 160px 2rem 80px; 
+            background: radial-gradient(circle at top, #1e1b4b 0%, #030712 100%);
+            position: relative;
+        }
+
+        .success-card {
+            text-align: center;
+            max-width: 650px;
+            width: 100%;
+            animation: slideUp 1s cubic-bezier(0.2, 1, 0.2, 1);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Icon Box */
+        .icon-box {
+            width: 110px;
+            height: 110px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 2px solid #6366f1;
+            border-radius: 35px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 2rem;
-            max-width: 900px;
-            margin: auto;
-            text-align: center;
-            flex-grow: 1;
+            margin: 0 auto 3rem;
         }
 
-        .thank-you-card {
-            background: #ffffff;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Lighter shadow */
-            max-width: 600px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            animation: fadeInScale 0.7s ease-out;
+        .icon-box i {
+            font-size: 3.5rem;
+            color: #6366f1;
+            filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6));
         }
 
-        .thank-you-card .icon {
-            font-size: 4rem;
-            color: #00796B; /* Darker teal color for the icon */
-            margin-bottom: 1rem;
+        /* Typography */
+        .success-card h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -3px;
+            margin-bottom: 2rem;
+            line-height: 1;
+            color: #ffffff;
         }
 
-        .thank-you-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: #004D40; /* Even darker teal heading */
-            margin-bottom: 0.5rem;
-        }
-
-        .thank-you-card p {
-            font-size: 1.1rem;
-            color: #444; /* Consistent body text color */
+        .success-card p {
+            color: #94a3b8;
+            font-size: 1.25rem;
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: 4rem;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .thank-you-card .home-btn {
-            background: linear-gradient(45deg, #00BCD4, #00ACC1);
-            color: #fff;
-            padding: 0.9rem 2.5rem;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,188,212,0.4);
-            transition: all 0.3s ease-in-out;
-            text-transform: uppercase;
+        /* Redirect UI */
+        .redirect-notice {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1.2rem 3rem;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            color: #f8fafc;
+            font-size: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        #countdown {
+            color: #6366f1;
+            font-weight: 800;
+        }
+
+        .home-link {
+            display: block;
+            margin-top: 3rem;
+            color: #94a3b8;
             text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+        .home-link:hover { color: #6366f1; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .thank-you-card .home-btn:hover {
-            background: #00ACC1;
-            box-shadow: 0 6px 15px rgba(0,188,212,0.6);
-            transform: translateY(-3px) scale(1.02);
+        .icon-box::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #6366f1;
+            border-radius: 35px;
+            animation: pulse 2s infinite;
         }
 
-        /* Animation for the card */
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* --- MOBILE RESPONSIVENESS (from about.html) --- */
-        @media(max-width: 768px) {
-            header {
-                height: 40vh;
-            }
-            .page-title {
-                font-size: 3rem;
-                color: #333;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            nav ul {
-                display: none;
-                flex-direction: column;
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.95);
-                padding-top: 6rem;
-                align-items: center;
-                transition: right 0.3s ease-in-out;
-                box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            }
-
-            nav ul.active {
-                right: 0;
-                display: flex;
-            }
-
-            nav ul li {
-                margin: 1rem 0;
-                font-size: 1.2rem;
-            }
-
-            nav ul li a {
-                color: #00796B;
-            }
-
-            nav ul li.active a {
-                color: #004D40;
-            }
-
-            .quote-btn {
-                display: none;
-            }
-
-            .thank-you-section {
-                padding: 3rem 1rem;
-            }
-            .thank-you-card {
-                padding: 2rem;
-                gap: 1rem;
-            }
-            .thank-you-card .icon {
-                font-size: 3rem;
-            }
-            .thank-you-card h2 {
-                font-size: 2rem;
-            }
-            .thank-you-card p {
-                font-size: 1rem;
-            }
-            .thank-you-card .home-btn {
-                width: 100%;
-                padding: 0.8rem 2rem;
-            }
+        @media (max-width: 768px) {
+            .thank-you-wrapper { padding-top: 120px; }
+            .success-card h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-   {% include 'header.html' %}
+    {% include 'header.html' %}
 
-    <section class="thank-you-section">
-        <div class="thank-you-card animate-on-scroll scale-in">
-            <i class="fas fa-check-circle icon"></i> <h2>Message Sent Successfully!</h2>
-            <p>Thank you for reaching out to DigiYash. We have received your message and will get back to you shortly, usually within 24-48 business hours.</p>
-            <p>In the meantime, feel free to explore more about our services or connect with us on social media.</p>
-            <a href="/" class="home-btn">Go to Homepage</a>
+    <main class="thank-you-wrapper">
+        <div class="success-card">
+            <div class="icon-box">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1>Success.</h1>
+            
+            <p>Your message has been transmitted. Our lead engineer will review your project details and reach out within 24 hours.</p>
+            
+            <div class="redirect-notice">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                <span>Returning to home in <span id="countdown">10</span>s</span>
+            </div>
+
+            <a href="/" class="home-link">Click here to skip the wait</a>
         </div>
-    </section>
+    </main>
 
     {% include 'footer.html' %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.getElementById('hamburger-menu');
-            const navLinks = document.getElementById('nav-links');
+        let seconds = 10;
+        const countdownElement = document.getElementById('countdown');
 
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-
-            // Close menu when a link is clicked
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                });
-            });
-
-            // Intersection Observer for scroll animations
-            const animateElements = document.querySelectorAll('.animate-on-scroll');
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    } else {
-                        // Optional: remove 'active' class when element scrolls out of view
-                        entry.target.classList.remove('active');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            animateElements.forEach(element => {
-                observer.observe(element);
-            });
-        });
+        const timer = setInterval(() => {
+            seconds--;
+            if(countdownElement) countdownElement.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(timer);
+                window.location.href = "/";
+            }
+        }, 1000);
     </script>
-
 </body>
 </html>
